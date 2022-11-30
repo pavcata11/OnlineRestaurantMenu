@@ -20,6 +20,7 @@
                     Меню
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link" style="color:orange" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
@@ -27,14 +28,23 @@
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" style="color:orange" asp-area="" asp-controller="Books" asp-action="MyBooks">
-                                    sad
-                                </a>
-                            </li>
-                        }
+                               
+                                   <div class="dropdown" style="float:right;">
+                                    <a class="dropbtn nav-link" style="color:orange">Административни опции</a>
+                                              <div class="dropdown-content">
+                                                <a asp-area="" asp-controller="Product" asp-action="AddDrink">Добавяне на напитка</a>
+                                                <a href="#">Добавяне храна</a>
+                                                <a href="#">Добавяне сервитьор/ка</a>
+                                          </div>
+                                    </div>
+                             </li>
+      
+                         }
                     </ul>
+
                     <partial name="_LoginPartial" />
                 </div>
+               
             </div>
         </nav>
     </header>

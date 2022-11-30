@@ -6,5 +6,7 @@ namespace OnlineRestaurantMenu.Contracts
     public interface IMenuServise
     {
         public Task<IEnumerable<MenuFoodModel>> GetAllFoodTypesAsync();
+        public Task<IEnumerable<MenuFoodModel>> GetAllDrinkTypesAsync();
+
     }
 }

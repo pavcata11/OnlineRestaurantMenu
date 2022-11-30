@@ -10,8 +10,13 @@
       height: 380px;"></div>
    <div class="text-center mb-2">
       <h1 class="text-black">Меню</h1>
-      <button class="btn btn-primary">Храни</button>
-      <button class="btn btn-primary">Напитки</button>
+
+        <div class="d-flex justify-content-center">
+            <a class="nav-link btn btn-primary" style="color:white" asp-controller="Menu" asp-action="FoodsTypes">Храни</a>
+            <a class="nav-link btn-primary" style="color:white" asp-controller="Menu" asp-action="DrinksTypes">Напитки</a>
+            <a class="nav-link btn-primary" style="color:white" asp-controller="Menu" asp-action="DrinksTypes">Добавки</a>
+        </div>
+     
    </div>
    <div class="input-group px-5">
       <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />

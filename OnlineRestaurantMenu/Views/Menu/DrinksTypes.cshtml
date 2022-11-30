@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<MenuFoodModel>
-    @{
-        ViewBag.Title = "Watchlist";
-    }
+@{
+    ViewBag.Title = "Watchlist";
+}
     <div class="container pb-5" style="background-color:rgb(220,220,220,0.1)">
     <partial name="_MenuPartial" />
         <div class="row justify-content-center">
-            @foreach (var type in Model)
-            {
-                
-                <div class="ar-image m-3">
-                    <div style="background: url('https://healthyfitnessmeals.com/wp-content/uploads/2021/04/Southwest-chicken-salad-7.jpg');  background-position: center;
+        @foreach (var type in Model)
+        {
+
+                    <div class="ar-image m-3">
+                        <div style="background: url('https://healthyfitnessmeals.com/wp-content/uploads/2021/04/Southwest-chicken-salad-7.jpg');  background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius:30px" class="article-image"></div>
-                    <p class="h2">@type.Type</p>
-                </div>
-            }
+                        <p class="h2">@type.Type</p>
+                    </div>
+        }
         </div>
     </div>
 <link rel="stylesheet" href="~/css/CardTypes.css" asp-append-version="true" />

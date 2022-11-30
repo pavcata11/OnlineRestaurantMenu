@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\FoodsTypes.css" />
+    <None Include="wwwroot\css\CardTypes.css" />
   </ItemGroup>
 
   <ItemGroup>
