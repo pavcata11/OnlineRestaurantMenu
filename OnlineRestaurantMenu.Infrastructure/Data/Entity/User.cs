@@ -10,9 +10,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [MaxLength(USER_FIRST_NAME_MAX_LENGTH)]
         public string FirstName { get; set; } = null!;
         [Required]
-        [MaxLength(USER_SECOND_NAME_MAX_LENGTH)]
-        public string SecondName { get; set; } = null!;
-        [Required]
         [MaxLength(USER_LAST_NAME_MAX_LENGTH)]
         public string LastName { get; set; } = null!;
         public int Age { get; set; }

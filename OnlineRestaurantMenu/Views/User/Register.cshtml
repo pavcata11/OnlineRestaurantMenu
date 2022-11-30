@@ -1,0 +1,91 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+<div class="container pb-5">
+    <section>
+        <div class="p-5  bg-image" style="
+         background-image: url('https://i.postimg.cc/9XLYf0xf/pexels-ella-olsson-1640777.jpg');
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         position: relative;
+         height: 380px;"></div>
+        <div class="card mx-4 mx-md-5 shadow-1-strong" style="
+         margin-top: -100px;
+         background: hsla(0, 0%, 99%);
+         backdrop-filter: blur(250px);
+         ">
+            <div class="card-body py-5 px-md-5">
+                <div class="row  justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="fw-bold mb-5 text-center">@ViewData["Title"]</h2>
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="mb-1">
+                                        <label class="form-label text-black" asp-for="@Model.FirstName">Име</label>
+                                        <input class="form-control" autocomplete="firstname" aria-required="true" asp-for="@Model.FirstName" />
+                                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class=" mb-1">
+                                        <label class="form-label text-black" asp-for="@Model.LastName">Фамилия</label>
+                                        <input class="form-control" autocomplete="lastname" aria-required="true" asp-for="@Model.LastName" />
+                                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class=" mb-1">
+                                        <label class="form-label text-black" asp-for="@Model.UserName">Потребителско име</label>
+                                        <input class="form-control" autocomplete="username" aria-required="true" asp-for="@Model.UserName" />
+                                        <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class=" mb-1">
+                                        <label class="form-label text-black" asp-for="@Model.Email">Имейл</label>
+                                        <input class="form-control" autocomplete="username" aria-required="true" asp-for="@Model.Email" />
+                                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="mb-1">
+                                        <label class="form-label text-black" asp-for="@Model.Password">Парола</label>
+                                        <input class="form-control" type="password" autocomplete="new-password" aria-required="true" asp-for="@Model.Password" />
+                                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class=" mb-1">
+                                        <label class="form-label text-black" asp-for="@Model.ConfirmPassword">Потрърди парола</label>
+                                        <input class="form-control" type="password" autocomplete="new-password" aria-required="true" asp-for="@Model.ConfirmPassword" />
+                                        <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-check d-flex justify-content-center mb-2">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                                <label class="form-check-label" for="form2Example33">
+                                    Remember password
+                                </label>
+                            </div>
+                            <div class=" text-center">
+                                <button id="registerSubmit" type="submit" class="btn btn-primary btn-block mb-4">Регистриране</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

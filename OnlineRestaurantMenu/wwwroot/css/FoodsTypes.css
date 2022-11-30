@@ -1,0 +1,33 @@
+﻿.article-image {
+    height: 350px;
+    width: 350px;
+    -webkit-filter: grayscale(0) blur(0);
+    filter: grayscale(0) blur(0);
+}
+
+.ar-image:hover .article-image {
+    -webkit-filter: grayscale(0%) blur(3px);
+    filter: grayscale(0%) blur(3px);
+}
+
+.ar-image {
+    position: relative;
+    width: 350px;
+    height: 350px;
+}
+
+    .ar-image > p {
+        display: none;
+    }
+
+    .ar-image:hover > p {
+        position: absolute;
+        top: 50%;
+        display: block;
+        color: #ffffff;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        margin: 0px;
+    }

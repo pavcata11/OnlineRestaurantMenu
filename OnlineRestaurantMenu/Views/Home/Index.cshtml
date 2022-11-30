@@ -1,8 +1,101 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿
+<div class="bg-image d-flex align-items-center container mt-3"
+     style="
+   background-image: url('https://i.postimg.cc/9XLYf0xf/pexels-ella-olsson-1640777.jpg');
+   height: 70vh;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-lg-6" style="background-color: rgba(10, 10, 12, 0.4);border-left: 8px solid orange;">
+                <h1 class="text-white">
+                    Ресторант Трите Щерки
+                </h1>
+                <p class="text-white">
+                    Заповядайте в Новоткритият Трите Щерки Grill Ресторант. В царството на местните специалитети, при нас Ви очаква, пилешко, свинско, телешко, патешко, конско, агнешко и още много изненади.
+                    Поръчай праз нашето онлай меню сегя и спести време. Разгледай новото ни меню и поръчай през него.
+                </p>
+                <div class="btn-box pt-4">
+                    <button type="button" class="btn btn-primary mb-3" style="background-color:orange">Поръчай сега</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 class="text-center mt-5 mb-5">Специалитети</h2>
+<div class="container text-center my-3 pb-4">
+    <div class="row mx-auto my-auto justify-content-center">
+        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="https://i.postimg.cc/9M2n7Hx1/pexels-lisa-fotios-1279330.jpg" class="img-fluid">
+                            </div>
+                            <h4>Slide 1</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="https://i.postimg.cc/zD0cVMTS/pexels-dana-tentis-262959.jpg" class="img-fluid">
+                            </div>
+                            <h4>Slide 2</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="https://i.postimg.cc/x8CgvfLG/pexels-sydney-troxell-718742.jpg" class="img-fluid">
+                            </div>
+                            <h4>Slide 3</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="https://i.postimg.cc/6pwYWxQh/pexels-karina-shilongo-3192367.jpg" class="img-fluid">
+                            </div>
+                            <h4>Slide 4</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="https://i.postimg.cc/7hd1SgHD/pexels-calvin-lee-9967252.jpg" class="img-fluid">
+                            </div>
+                            <h4>Slide 5</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="https://i.postimg.cc/nhvKQj6b/pexels-streetwindy-4055136.jpg" class="img-fluid">
+                            </div>
+                            <h4>Slide 6</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
 </div>
