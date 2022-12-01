@@ -40,5 +40,53 @@ namespace OnlineRestaurantMenu.Controllers
                 return View(model);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> EditDrink(int Id)
+        {
+           var model = await productService.EditDrink(Id);
+           return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditDrink(DrinkModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                await productService.EditDrinkAsync(model);
+                return RedirectToAction(nameof(AllDrinks));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return View(model);
+            }
+          
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> AllDrinks(int pg=1)
+        {
+            var model = await productService.GetAllDrinksAsync();
+
+            const int pageSize = 5;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            int resCount = model.Count();
+            var pager = new Pager(resCount,pg,pageSize);
+            int recSkip = (pg-1) * pageSize;
+            var data = model.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+
+            return View(data);
+        }
+
+
     }
 }
