@@ -12,10 +12,10 @@
     }
 }
 
-  
 
 
     <div class="container">
+    @Html.ActionLink("Добавяне на напитка", "AddDrink")
     <table class="table table-striped">
         <thead>
             <tr>
@@ -45,11 +45,10 @@
                     <td>@item.Calories kcal</td>
                     <td>@item.Image</td>
                     <td>
-                        @Html.ActionLink("Product", "EditDrink", new { Id = item.Id })
-                        <a class="nav-link btn btn-success" style="color:white" asp-controller="Product" asp-action="EditDrink" asp-route-Id="item.Id">Редактиране</a>
+                        @Html.ActionLink("Редактиране", "EditDrink", new { Id = item.Id })
                     </td>
                     <td>
-                        <a class="nav-link btn btn-danger" style="color:white" asp-controller="Product" asp-action="AllDrinks">Изтриване</a>
+                        @Html.ActionLink("Изтриване", "EditDrink", new { Id = item.Id })
                     </td>
                 </tr>
                 rows++;
