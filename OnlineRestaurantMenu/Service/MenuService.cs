@@ -25,11 +25,25 @@ namespace OnlineRestaurantMenu.Service
              }).ToListAsync();
         }
 
+        public async Task<IEnumerable<Food>> GetAllFoodByType(int id)
+        {
+            return await context.Foods.Where(x => x.TypeId == id).Select(x => new Food
+            {
+                Name = x.Name,
+                Price = x.Price,
+                Calories = x.Calories,
+                Description = x.Description,
+                TimeToGet = x.CookingTime,
+
+            }).ToListAsync();
+        }
+
         public async Task<IEnumerable<MenuFoodModel>> GetAllFoodTypesAsync()
         {
             return await context.FoodTypes
                 .Select(m => new MenuFoodModel()
                 {
+                    Id = m.Id,
                     Type = m.Type,
                     Image = m.Image
 

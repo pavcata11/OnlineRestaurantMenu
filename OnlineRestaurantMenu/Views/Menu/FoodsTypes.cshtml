@@ -7,13 +7,16 @@
         <div class="row justify-content-center">
             @foreach (var type in Model)
             {
-                
+                    
                 <div class="ar-image m-3">
                     <div style="background: url('https://healthyfitnessmeals.com/wp-content/uploads/2021/04/Southwest-chicken-salad-7.jpg');  background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            border-radius:30px" class="article-image"></div>
-                    <p class="h2">@type.Type</p>
+            border-radius:30px" class="article-image">
+
+                   
+        </div>
+                <p class="h2"> @Html.ActionLink(type.Type, "GetAllFoodByType", new { Id = type.Id })</p>
                 </div>
             }
         </div>

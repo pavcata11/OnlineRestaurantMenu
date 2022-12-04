@@ -7,6 +7,7 @@ namespace OnlineRestaurantMenu.Contracts
     {
         public Task<IEnumerable<MenuFoodModel>> GetAllFoodTypesAsync();
         public Task<IEnumerable<MenuFoodModel>> GetAllDrinkTypesAsync();
+        public Task<IEnumerable<Food>> GetAllFoodByType(int id);
 
     }
 }
