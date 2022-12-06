@@ -3,6 +3,7 @@ using OnlineRestaurantMenu.Contracts;
 using OnlineRestaurantMenu.Infrastructure.Data;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
 using OnlineRestaurantMenu.Models;
+using OnlineRestaurantMenu.Models.Product;
 
 namespace OnlineRestaurantMenu.Service
 {
@@ -126,6 +127,91 @@ namespace OnlineRestaurantMenu.Service
         public Task<DrinkModel> RemoveDrink(int? id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<DrinkTypesModel>> GetFoodTypesAsync()
+        {
+            return await context.FoodTypes.Select(x => new DrinkTypesModel
+            {
+                Id = x.Id,
+                Name = x.Type
+            }).ToListAsync();
+        }
+
+        public async Task AddFoodAsync(AddProductModel model)
+        {
+            var entity = new Foods()
+            {
+                Name = model.Name,
+                Price = model.Price,
+                Calories = model.Calories,
+                Description = model.Description,
+                Image = model.Image,
+                TypeId = model.TypeId,
+                CookingTime = model.TimeToGet,
+            };
+            await context.Foods.AddAsync(entity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<FoodModel> EditFood(int? id)
+        {
+            return await context.Foods.Where(x => x.Id == id).Include(x => x.Type).Select(x => new FoodModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                Price = x.Price,
+                TypeId = x.TypeId,
+                Size = x.Size,
+                Calories = x.Calories,
+                TimeToGet = x.CookingTime,
+                Image = x.Image
+            }).FirstOrDefaultAsync();
+        }
+
+        public async Task<Foods> EditFoodAsync(FoodModel model)
+        {
+            var entity = await context.Foods.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
+            entity.Price = model.Price;
+            entity.Description = model.Description;
+            entity.Calories = model.Calories;
+            entity.Image = model.Image;
+            entity.TypeId = model.TypeId;
+            entity.Name = model.Name;
+            entity.CookingTime = model.TimeToGet;
+            context.Foods.Update(entity);
+            await context.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<IEnumerable<FoodModel>> GetAllFoodsAsync()
+        {
+            return await context.Foods
+                .Include(x => x.Type)
+                .Select(m => new FoodModel()
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    Description = m.Description,
+                    Price = m.Price,
+                    Calories = m.Calories,
+                    TimeToGet = m.CookingTime,
+                    Size = m.Size,
+                    Image = m.Image,
+                    TypeId = m.TypeId,
+                }).ToListAsync();
+        }
+
+        public async Task RemoveFoodAsync(int id)
+        {
+            var model = context.Foods.Where(X=>X.Id== id).FirstOrDefault();
+            if (model != null)
+            {
+                context.Foods.Remove(model);
+                await context.SaveChangesAsync();
+            }
+          
         }
     }
 }
