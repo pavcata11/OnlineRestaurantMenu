@@ -23,6 +23,11 @@ namespace Watchlist.Controllers
             var model = await menuServise.GetAllDrinkTypesAsync();
             return View(model);
         }
+        public async Task<IActionResult> FoodsByType(int id)
+        {
+            var model = await menuServise.GetAllFoodByType(id);
+            return View(model);
+        }
 
 
     }

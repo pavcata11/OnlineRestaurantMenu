@@ -46,6 +46,15 @@ namespace OnlineRestaurantMenu.Controllers
            var model = await productService.EditDrink(Id);
            return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveDrink(int Id)
+        {
+            await productService.RemoveDrinkAsync(Id);
+            return RedirectToAction(nameof(AllDrinks));
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> EditDrink(DrinkModel model)
         {

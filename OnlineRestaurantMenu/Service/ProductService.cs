@@ -122,5 +122,10 @@ namespace OnlineRestaurantMenu.Service
             }
             ).FirstOrDefaultAsync();
         }
+
+        public Task<DrinkModel> RemoveDrink(int? id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
