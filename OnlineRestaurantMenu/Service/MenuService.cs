@@ -29,6 +29,7 @@ namespace OnlineRestaurantMenu.Service
         {
             return await context.Foods.Where(x => x.TypeId == id).Select(x => new Food
             {
+                Id = x.Id,  
                 Name = x.Name,
                 Price = x.Price,
                 Calories = x.Calories,

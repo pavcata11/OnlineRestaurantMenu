@@ -34,7 +34,7 @@ border-end-start-radius:80px;
                     </div>
                     <div class="food-card_content">
                         <div class="food-card_title-section">
-                            <a href="#!" class="food-card_title">Овчарска салата</a>
+                            <a href="#!" class="food-card_title">@food.Name</a>
                             <div class="row">
                                 <div class="col text-center">
 
@@ -66,15 +66,15 @@ border-end-start-radius:80px;
                                 <div class="food-card_order-count">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary minus-btn" type="button" id="button-addon1">
+                                            <button onclick="minus(event)" id="minus"class="btn btn-outline-secondary minus-btn" type="button">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
                                                 </svg>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control input-manulator" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="0">
+                                        <input id="input" value = "0" type="text" class="form-control" placeholder="">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary add-btn" type="button" id="button-addon1">
+                                            <button onclick="plus(event)" id="plus"  class="btn btn-outline-secondary add-btn" type="button" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                                                 </svg>
@@ -82,6 +82,7 @@ border-end-start-radius:80px;
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -90,6 +91,8 @@ border-end-start-radius:80px;
         }
         
     </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
 
  @* <!-- Source -->

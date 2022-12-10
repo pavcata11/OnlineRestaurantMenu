@@ -1,0 +1,79 @@
+﻿@using OnlineRestaurantMenu.Models.User;
+@model IEnumerable<UserModel>
+@{
+    ViewData["Title"] = "Всички Юзъри";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    int rows = 1;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Име</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Потребителско име</th>
+                <th scope="col">Email</th>
+                <th scope="col">Редактиране</th>
+                <th scope="col">Изтриване</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@rows</th>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Username</td>
+                    <td>@item.Email лв.</td>
+                    <td>
+                        @Html.ActionLink("Редактиране", "EditUser", new { Id = item.Id })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Изтриване", "RemoveUser", new { Id = item.Id })
+                    </td>
+                </tr>
+                rows++;
+            }
+
+
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+<div class="container">
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item" @(pge==pager.CurrentPage?"active":"")>
+                    <a class="page-link" asp-controller="Product" asp-action="AllDrinks" asp-route-pg="@pge">@pge</a>
+                </li>
+            }
+
+        </ul>
+    }
+
+</div>
+
+
+
+
