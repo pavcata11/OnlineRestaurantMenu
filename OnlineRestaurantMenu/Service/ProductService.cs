@@ -28,7 +28,7 @@ namespace OnlineRestaurantMenu.Service
                 Size = model.Size,
                 DrinkTyepeId = model.TypeId,
             };
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+            /*string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -41,7 +41,7 @@ namespace OnlineRestaurantMenu.Service
                 model.File.CopyTo(stream);
             }
             model.IsSuccess = true;
-            await DropBoxUploadFile.Upload(fileNameWithPath, fileName);
+            await DropBoxUploadFile.Upload(fileNameWithPath, fileName);*/
             await context.Drinks.AddAsync(entity);
             await context.SaveChangesAsync();
         }
@@ -71,6 +71,7 @@ namespace OnlineRestaurantMenu.Service
             entity.Image = model.Image;
             entity.DrinkTyepeId = model.TypeId;
             entity.Name = model.Name;
+            entity.Size = model.Size;
             context.Drinks.Update(entity);
             await context.SaveChangesAsync();
             return entity;

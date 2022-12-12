@@ -83,14 +83,14 @@
             <div class="row px-5">
                 <div class="col-md-12 mb-4">
                     <div class=" mb-1 ">
-                    <label class="form-label text-black" asp-for="@Model.Image">Име на снимката.</label>
+                    <label class="form-label text-black" asp-for="@Model.Image">URL на снимка.</label>
                     <input asp-for="@Model.Image" class="form-control" />
                     <span asp-validation-for="@Model.Image" class="text-danger"></span>
                 </div>
             </div>
             </div>
 
-            <div class="row px-5">
+          @*  <div class="row px-5">
                 <div class="col-md-12 mb-4">
                     <div class=" mb-1 ">
                     <label class="col-form-label">Select File</label>
@@ -98,7 +98,7 @@
                     <span asp-validation-for="@Model.File" class="text-danger"></span>
                 </div>
             </div>
-            </div>
+            </div>*@
 
             <div class="row mt-2">
                 <div class="col-12">
