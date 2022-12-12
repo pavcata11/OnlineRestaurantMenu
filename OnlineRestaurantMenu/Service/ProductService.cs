@@ -25,7 +25,6 @@ namespace OnlineRestaurantMenu.Service
                 Description = model.Description,
                 Image = model.Image,
                 DrinkTyepeId = model.TypeId,
-                DrinkMainType = model.DrinkMainType,
             };
             await context.Drinks.AddAsync(entity);
             await context.SaveChangesAsync();

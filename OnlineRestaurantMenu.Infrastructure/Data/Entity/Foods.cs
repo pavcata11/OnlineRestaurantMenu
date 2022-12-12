@@ -16,6 +16,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [Required]
         public int Size { get; set; } 
         [Required]
+        [MaxLength(FOOD_IMAGE_MAX_LENGTH)]
         public string Image { get; set; } = null!;
         [Required]
         public int CookingTime { get; set; }
@@ -25,7 +26,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         public decimal Price { get; set; }
         [Required]
         [ForeignKey(nameof(TypeId))]
-        public FoodType Type { get; set; }
+        public FoodType Type { get; set; } = null!;
         [Required]
         public int TypeId { get; set; }
 

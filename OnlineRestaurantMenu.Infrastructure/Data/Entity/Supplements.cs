@@ -12,8 +12,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [MaxLength(SUPPELEMENT_NAME_MAX_LENGTH)]
         public string Name { get; set; } = null!;
         [Required]
-        public int Count { get; set; }
-        [Required]
         public decimal Price { get; set; }
     }
 }

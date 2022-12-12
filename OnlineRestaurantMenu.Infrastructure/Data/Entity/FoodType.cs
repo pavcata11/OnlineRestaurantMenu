@@ -10,6 +10,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [Required]
         [MaxLength(FOOD_TYPE_NAME_MAX_LENGTH)]
         public string Type { get; set; } = null!;
+        [MaxLength(FOOD_TYPE_IMAGE_MAX_LENGTH)]
         public string Image { get; set; } = null!;
     }
 }

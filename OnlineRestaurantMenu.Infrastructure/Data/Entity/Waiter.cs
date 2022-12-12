@@ -18,8 +18,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [Required]
         public string UserId { get; set; }
         [Required]
-        public string Egn { get; set; }
-        [Required]
         public DateTime DateStartWork { get; set; }
 
     }
