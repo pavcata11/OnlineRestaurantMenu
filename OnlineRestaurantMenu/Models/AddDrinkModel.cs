@@ -15,5 +15,8 @@ namespace OnlineRestaurantMenu.Models
         public DrinkMainTypes DrinkMainType { get; set; }
         public int TypeId { get; set; }
         public IEnumerable<DrinkTypesModel> DrinkTypes { get; set; } = new List<DrinkTypesModel>();
+
+
+        public SingleFileModel File { get; set; }
     }
 }

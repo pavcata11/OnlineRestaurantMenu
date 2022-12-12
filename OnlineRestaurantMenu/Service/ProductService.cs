@@ -15,7 +15,7 @@ namespace OnlineRestaurantMenu.Service
             context = _context;
         }
 
-        public async Task AddDrinkAsync(AddDrinkModel model)
+        public async Task AddDrinkAsync(SingleFileModel model)
         {
             var entity = new Drink()
             {

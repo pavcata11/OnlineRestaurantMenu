@@ -8,7 +8,7 @@ namespace OnlineRestaurantMenu.Contracts
     {
         public Task<IEnumerable<DrinkTypesModel>> GetDrinkTypesAsync();
         public Task<IEnumerable<DrinkTypesModel>> GetFoodTypesAsync();
-        public Task AddDrinkAsync(AddDrinkModel model);
+        public Task AddDrinkAsync(SingleFileModel model);
         public Task AddFoodAsync(AddProductModel model);
         public Task<DrinkModel> EditDrink(int? id);
         public Task<FoodModel> EditFood(int? id);

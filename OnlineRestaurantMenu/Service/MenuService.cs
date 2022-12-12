@@ -50,5 +50,18 @@ namespace OnlineRestaurantMenu.Service
 
                 }).ToListAsync();
         }
+
+        public async Task AddFoodInOrder(int id)
+        {
+            var result = await context.Foods.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var entity = new Order()
+            {
+            
+            };
+        
+           
+        }
+
+
     }
 }

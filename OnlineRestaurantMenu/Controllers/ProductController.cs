@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRestaurantMenu.Contracts;
+using OnlineRestaurantMenu.DropBox;
 using OnlineRestaurantMenu.Models;
 using OnlineRestaurantMenu.Models.Product;
 using OnlineRestaurantMenu.Service;
@@ -16,11 +17,11 @@ namespace OnlineRestaurantMenu.Controllers
         [HttpGet]
         public async Task<IActionResult> AddDrink()
         {
-            var model = new AddDrinkModel()
-            {
-                DrinkTypes = await productService.GetDrinkTypesAsync()
-            };
-
+            /*  var model = new AddDrinkModel()
+              {
+                  DrinkTypes = await productService.GetDrinkTypesAsync()
+              };*/
+            SingleFileModel model = new SingleFileModel();
             return View(model);
         }
         [HttpGet]
@@ -33,24 +34,48 @@ namespace OnlineRestaurantMenu.Controllers
 
             return View(model);
         }
-
+     
+        
         [HttpPost]
-        public async Task<IActionResult> AddDrink(AddDrinkModel model)
+        public async Task<IActionResult> AddDrink(SingleFileModel model )
         {
-            if (!ModelState.IsValid)
+            
+           
+         
+
+           /* if (!ModelState.IsValid)
             {
                 return View(model);
             }
             try
-            {
-                await productService.AddDrinkAsync(model);
+            {*/
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                //get file extension
+                FileInfo fileInfo = new FileInfo(model.File.FileName);
+                string fileName = model.FileName + fileInfo.Extension;
+
+                string fileNameWithPath = Path.Combine(path, fileName);
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    model.File.CopyTo(stream);
+                }
+                model.IsSuccess = true;
+                model.Message = "File upload successfully";
+                await DropBoxUploadFile.Upload(fileNameWithPath, fileName);
+           
+            await productService.AddDrinkAsync(model);
                 return RedirectToAction(nameof(AddDrink));
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("", "Something went wrong");
-                return View(model);
-            }
+
+            /*}
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Something went wrong");
+                    return View(model);
+                }*/
         }
 
         [HttpPost]
