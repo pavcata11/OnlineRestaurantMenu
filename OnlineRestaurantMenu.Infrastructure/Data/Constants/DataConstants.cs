@@ -25,14 +25,14 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Constants
             public const int DRINK_NAME_MIN_LENGTH = 5;
             public const int DRINK_DESCRIPTION_MAX_LENGTH = 300;
             public const int DRINK_DESCRIPTION_MIN_LENGTH = 20;
-            public const decimal DRINK_PRICE_MIN = 0.10m;
-            public const decimal DRINK_PRICE_MAX = 99.99m;
-            public const int DRINK_CALORIES_MAX = 1200;
-            public const int DRINK_CALORIES_MIN = 20;
+            public const double DRINK_PRICE_MIN = 0.10;
+            public const double DRINK_PRICE_MAX = 99.99;
+            public const double DRINK_CALORIES_MAX = 1200;
+            public const double DRINK_CALORIES_MIN = 20;
             public const int DRINK_IMAGE_MIN_LENGTH = 5;
             public const int DRINK_IMAGE_MAX_LENGTH = 100;
-            public const int DRINK_SIZE_MIN = 50;
-            public const int DRINK_SIZE_MAX = 3000;
+            public const double DRINK_SIZE_MIN = 50;
+            public const double DRINK_SIZE_MAX = 3000;
         }
 
         public class Food
@@ -43,14 +43,14 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Constants
             public const int FOOD_DESCRIPTION_MIN_LENGTH = 20;
             public const int FOOD_IMAGE_MIN_LENGTH = 5;
             public const int FOOD_IMAGE_MAX_LENGTH = 100;
-            public const int FOOD_SIZE_MIN = 50;
-            public const int FOOD_SIZE_MAX = 3000;
-            public const int FOOD_COOKING_TIME_MAX = 3000;
-            public const int FOOD_COOKING_TIME_MIN = 5;
+            public const double FOOD_SIZE_MIN = 50;
+            public const double FOOD_SIZE_MAX = 3000;
+            public const double FOOD_COOKING_TIME_MAX = 3000;
+            public const double FOOD_COOKING_TIME_MIN = 5;
             public const decimal FOOD_PRICE_MIN = 0.10m;
             public const decimal FOOD_PRICE_MAX = 99.99m;
-            public const int FOOD_CALORIES_MAX = 1200;
-            public const int FOOD_CALORIES_MIN = 20;
+            public const double FOOD_CALORIES_MAX = 1200;
+            public const double FOOD_CALORIES_MIN = 20;
         }
         public class DrinkType
         {

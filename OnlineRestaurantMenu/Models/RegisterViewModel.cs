@@ -5,8 +5,10 @@ namespace OnlineRestaurantMenu.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(USER_FIRST_NAME_MAX_LENGTH, MinimumLength = USER_FIRST_NAME_MIN_LENGTH)]
         public string FirstName { get; set; } = null!;
         [Required]
+        [StringLength(USER_LAST_NAME_MAX_LENGTH, MinimumLength = USER_LAST_NAME_MIN_LENGTH)]
         public string LastName { get; set; } = null!;
         [Required]
         [StringLength(UserUsernameMaxLength, MinimumLength = UserUsernameMinLength)]

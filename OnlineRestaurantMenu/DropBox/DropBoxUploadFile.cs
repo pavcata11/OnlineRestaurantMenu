@@ -20,11 +20,10 @@ namespace OnlineRestaurantMenu.DropBox
                     var tx = dbx.Sharing.CreateSharedLinkWithSettingsAsync("/" + filename);
                     tx.Wait();
                     url = tx.Result.Url;
-                    var result = await dbx.Sharing.CreateSharedLinkWithSettingsAsync(url);
-                    var urlq = result.Url;
                 }
             }
         }
+     
         public static async Task Download(string fileName)
         {
             using (var dbx = new DropboxClient(token))

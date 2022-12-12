@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineRestaurantMenu.Contracts;
+using OnlineRestaurantMenu.DropBox;
 using OnlineRestaurantMenu.Infrastructure.Data;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
 using OnlineRestaurantMenu.Models;
@@ -15,7 +16,7 @@ namespace OnlineRestaurantMenu.Service
             context = _context;
         }
 
-        public async Task AddDrinkAsync(SingleFileModel model)
+        public async Task AddDrinkAsync(AddDrinkModel model)
         {
             var entity = new Drink()
             {
@@ -24,8 +25,23 @@ namespace OnlineRestaurantMenu.Service
                 Calories = model.Calories,
                 Description = model.Description,
                 Image = model.Image,
+                Size = model.Size,
                 DrinkTyepeId = model.TypeId,
             };
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            FileInfo fileInfo = new FileInfo(model.File.FileName);
+            string fileName = model.Image + fileInfo.Extension;
+            string fileNameWithPath = Path.Combine(path, fileName);
+            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+            {
+                model.File.CopyTo(stream);
+            }
+            model.IsSuccess = true;
+            await DropBoxUploadFile.Upload(fileNameWithPath, fileName);
             await context.Drinks.AddAsync(entity);
             await context.SaveChangesAsync();
         }

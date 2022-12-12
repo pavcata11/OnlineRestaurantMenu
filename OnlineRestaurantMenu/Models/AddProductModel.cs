@@ -1,9 +1,6 @@
-﻿using OnlineRestaurantMenu.Infrastructure.Data.Entity;
-using System.ComponentModel.DataAnnotations;
-
-namespace OnlineRestaurantMenu.Models.Product
+﻿namespace OnlineRestaurantMenu.Models
 {
-    public class FoodModel
+    public class AddProductModel
     {
         public string Name { get; set; } = null!;
         public int TimeToGet { get; set; }
@@ -13,10 +10,6 @@ namespace OnlineRestaurantMenu.Models.Product
         public decimal Price { get; set; }
         public int TypeId { get; set; }
         public string Image { get; set; }
-
         public IEnumerable<DrinkTypesModel> FoodType { get; set; } = new List<DrinkTypesModel>();
-
-        [Required]
-        public int Id { get; set; }
     }
 }

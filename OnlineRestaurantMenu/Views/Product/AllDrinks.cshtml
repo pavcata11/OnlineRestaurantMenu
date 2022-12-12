@@ -12,8 +12,6 @@
     }
 }
 
-
-
     <div class="container">
     @Html.ActionLink("Добавяне на напитка", "AddDrink")
     <table class="table table-striped">
@@ -26,7 +24,6 @@
                 <th scope="col">Цена</th>
                 <th scope="col">Размер</th>
                 <th scope="col">Калории</th>
-                <th scope="col">Снимка</th>
                 <th scope="col">Редактиране</th>
                 <th scope="col">Изтриване</th>
             </tr>
@@ -43,7 +40,6 @@
                     <td>@item.Price лв.</td>
                     <td>@item.Size мл.</td>
                     <td>@item.Calories kcal</td>
-                    <td>@item.Image</td>
                     <td>
                         @Html.ActionLink("Редактиране", "EditDrink", new { Id = item.Id })
                     </td>
