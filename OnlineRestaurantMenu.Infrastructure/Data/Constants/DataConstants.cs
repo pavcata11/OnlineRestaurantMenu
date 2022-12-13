@@ -64,7 +64,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Constants
         {
             public const int FOOD_TYPE_NAME_MAX_LENGTH = 50;
             public const int FOOD_TYPE_NAME_MIN_LENGTH = 50;
-            public const int FOOD_TYPE_IMAGE_MAX_LENGTH = 5;
+            public const int FOOD_TYPE_IMAGE_MAX_LENGTH = 300;
             public const int FOOD_TYPE_IMAGE_MIN_LENGTH = 100;
         }
         public class Supplements

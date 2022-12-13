@@ -12,8 +12,8 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         public User User { get; set; }
         [Required]
         public string UserId { get; set; }
-        public List<Drink> Drinks { get; set; } = new List<Drink>();    
-        public List<Foods> Foods { get; set; } = new List<Foods>();
+        public ICollection<Drink> Drinks { get; set; }
+        public ICollection<Foods> Foods { get; set; }
         public bool IsPay { get; set; }
         public bool CallToWaiter { get; set; }
       

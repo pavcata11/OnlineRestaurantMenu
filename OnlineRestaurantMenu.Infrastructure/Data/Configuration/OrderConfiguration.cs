@@ -38,7 +38,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
                         Price = 2,
                         Calories = 250,
                         DrinkTyepeId = 1,
-                        Order = new Order()
+                       
                     },
                 },
                 Foods= new List<Foods>(),

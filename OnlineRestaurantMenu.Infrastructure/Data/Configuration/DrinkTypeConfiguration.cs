@@ -40,7 +40,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             {
                 Id = 4,
                 Type = "Кафета",
-                Image = "https://cdn4.focus.bg/fakti/photos/original/8ac/zdravoslovno-e-da-piem-po-6-ili-7-kafeta-na-den-6.jpg"
+                Image = "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg"
             };
 
             drinkTypes.Add(type);

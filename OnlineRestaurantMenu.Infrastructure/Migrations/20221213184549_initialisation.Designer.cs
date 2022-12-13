@@ -12,8 +12,8 @@ using OnlineRestaurantMenu.Infrastructure.Data;
 namespace OnlineRestaurantMenu.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221212185447_addValidators")]
-    partial class addValidators
+    [Migration("20221213184549_initialisation")]
+    partial class initialisation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,6 +192,16 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cafe");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Трите Щерки",
+                            OwnerFirstName = "Павел",
+                            OwnerLastName = "Иванчев",
+                            OwnerSecondName = "Даниелов"
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Drink", b =>
@@ -201,9 +211,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CafeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Calories")
                         .HasColumnType("int");
@@ -237,13 +244,79 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CafeId");
-
                     b.HasIndex("DrinkTyepeId");
 
                     b.HasIndex("OrderId");
 
                     b.ToTable("Drinks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Calories = 80,
+                            Description = "Ко̀ка-ко̀ла е популярна газирана безалкохолна напитка, предлагана по целия свят, една от най-известните и продавани търговски марки в света. Известна е още със съкратеното разговорно наименование ко̀ла.",
+                            DrinkTyepeId = 1,
+                            Image = "https://www.fastbag.bg/wp-content/uploads/2020/07/coca-cola-2l-original.jpeg",
+                            Name = "Кока-кола",
+                            Price = 3m,
+                            Size = 250
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Calories = 145,
+                            Description = "Фанта портокал е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.",
+                            DrinkTyepeId = 1,
+                            Image = "https://napitkite.bg/wp-content/uploads/2018/04/fanta-portokal-ken.png",
+                            Name = "Фанта Портокал",
+                            Price = 5m,
+                            Size = 250
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Calories = 250,
+                            Description = "Фанта лимон е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.",
+                            DrinkTyepeId = 1,
+                            Image = "https://napitkite.bg/wp-content/uploads/2018/04/fanta-portokal-ken.png",
+                            Name = "Фанта Лимон",
+                            Price = 2m,
+                            Size = 250
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Calories = 400,
+                            Description = "Освежаваща негазирана плодова напитка с пюре от праскова. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.",
+                            DrinkTyepeId = 2,
+                            Image = "https://randi.bg/image/cache/catalog/Produkti-nov/Bezalkoholni/sokove/cappy-praskova-1l-600x600.jpg",
+                            Name = "Cappy Праскова",
+                            Price = 4m,
+                            Size = 1000
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Calories = 90,
+                            Description = "Cappy създава изключително вкусни сокове, нектари и плодови напитки вече над 60 години и вярваме, че прекрасният вкус на плодовете може да бъде източник на удоволствие и наслада всеки ден.",
+                            DrinkTyepeId = 2,
+                            Image = "https://gofood.bg/wp-content/uploads/2020/07/cappy9.jpg",
+                            Name = "Cappy Портокал",
+                            Price = 4m,
+                            Size = 1000
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Calories = 120,
+                            Description = "Освежаваща негазирана плодова напитка с пюре от вишни. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.",
+                            DrinkTyepeId = 2,
+                            Image = "https://kancelarski.bg/userfiles/productlargeimages/product_31162.jpg",
+                            Name = "Cappy Вишна",
+                            Price = 3m,
+                            Size = 1000
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.DrinkType", b =>
@@ -267,6 +340,32 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DrinkTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg",
+                            Type = "Безалкохолни"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Image = "https://gornabania.com/media/k2/items/cache/3b77d3f73b59742412f393cd0d264b14_M.jpg",
+                            Type = "Сокове"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Image = "https://cache2.24chasa.bg/Images/cache/281/Image_6207281_128_0.jpg",
+                            Type = "Фрешове"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Image = "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg",
+                            Type = "Кафета"
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Foods", b =>
@@ -276,9 +375,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CafeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Calories")
                         .HasColumnType("int");
@@ -315,13 +411,61 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CafeId");
-
                     b.HasIndex("OrderId");
 
                     b.HasIndex("TypeId");
 
                     b.ToTable("Foods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Calories = 80,
+                            CookingTime = 45,
+                            Description = "Овчарската салата е традиционно българско ястие и модификация на шопската салата. Приготвя се от нарязани краставици, домати, лук, магданоз, печени или сурови чушки, шунка, сварено яйце, кашкавал, настъргано бяло саламурено сирене и овкусени със сол и олио.",
+                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
+                            Name = "Овчарска салат",
+                            Price = 3m,
+                            Size = 250,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Calories = 80,
+                            CookingTime = 45,
+                            Description = "Салата „Цезар“ е популярна салата от маруля и крутони, гарнирани с пармезан, лимонов сок, зехтин, яйце, черен пипер и сос Уорчестър.",
+                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
+                            Name = "Салата Цезар",
+                            Price = 3m,
+                            Size = 250,
+                            TypeId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Calories = 80,
+                            CookingTime = 45,
+                            Description = "Мусака! Царицата на българската кухня! Едно от най-обичаните и най-често приготвяните ястия. Мусаката е абсолютният любимец както на всеки българин, така и на чужденците.",
+                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
+                            Name = "Мусака",
+                            Price = 3m,
+                            Size = 250,
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Calories = 80,
+                            CookingTime = 45,
+                            Description = "Боб и карначета - перфектната комбинация за едно вкусно похапване",
+                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
+                            Name = "Боб с карначета",
+                            Price = 3m,
+                            Size = 250,
+                            TypeId = 3
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.FoodType", b =>
@@ -334,8 +478,8 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -345,6 +489,26 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FoodTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "https://domashnakunyasdani.com/wp-content/uploads/2022/06/snapshot448.jpg",
+                            Type = "Салати"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Image = "http://mirenaancheva.com/zashtone/wp-content/uploads/sites/2/2019/02/IMG_1232.jpg",
+                            Type = "Основни ястия"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Image = "https://domashnakunyasdani.com/wp-content/uploads/2022/05/snapshot34.jpg",
+                            Type = "Супи"
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", b =>
@@ -391,6 +555,26 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Supplements");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Захар",
+                            Price = 1m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Лимон",
+                            Price = 1m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Мед",
+                            Price = 1m
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Table", b =>
@@ -400,9 +584,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CafeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("CountOfSeats")
                         .HasColumnType("int");
@@ -422,8 +603,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CafeId");
 
                     b.HasIndex("WaiterId");
 
@@ -583,10 +762,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Drink", b =>
                 {
-                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Cafe", null)
-                        .WithMany("Drinks")
-                        .HasForeignKey("CafeId");
-
                     b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.DrinkType", "Type")
                         .WithMany()
                         .HasForeignKey("DrinkTyepeId")
@@ -602,10 +777,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Foods", b =>
                 {
-                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Cafe", null)
-                        .WithMany("Foods")
-                        .HasForeignKey("CafeId");
-
                     b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", null)
                         .WithMany("Foods")
                         .HasForeignKey("OrderId");
@@ -632,10 +803,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Table", b =>
                 {
-                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Cafe", null)
-                        .WithMany("Tables")
-                        .HasForeignKey("CafeId");
-
                     b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Waiter", "Waiter")
                         .WithMany()
                         .HasForeignKey("WaiterId")
@@ -654,15 +821,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Cafe", b =>
-                {
-                    b.Navigation("Drinks");
-
-                    b.Navigation("Foods");
-
-                    b.Navigation("Tables");
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", b =>

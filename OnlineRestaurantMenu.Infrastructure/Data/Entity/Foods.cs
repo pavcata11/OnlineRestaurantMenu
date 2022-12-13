@@ -29,8 +29,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         public FoodType Type { get; set; } = null!;
         [Required]
         public int TypeId { get; set; }
-
-        public Order Order { get; set; }
-
+     
     }
 }
