@@ -19,9 +19,9 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [Required]
         [MaxLength(OWNER_LAST_NAME_MAX_LENGTH)]
         public string OwnerLastName { get; set; } = null!;
-        public List<Table> Tables { get; set; } = new List<Table> ();
+       /* public List<Table> Tables { get; set; } = new List<Table> ();
         public List<Drink> Drinks { get; set; } = new List<Drink> ();
-        public List<Foods> Foods { get; set; } = new List<Foods> ();
+        public List<Foods> Foods { get; set; } = new List<Foods> ();*/
 
 
     }

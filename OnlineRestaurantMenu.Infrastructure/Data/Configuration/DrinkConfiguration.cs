@@ -29,7 +29,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             drinks.Add(drink);
             drink = new Drink()
             {
-                Id = 1,
+                Id = 2,
                 Name = "Фанта Портокал",
                 Description = "Фанта портокал е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.",
                 Size = 250,
@@ -41,7 +41,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             drinks.Add(drink);
             drink = new Drink()
             {
-                Id = 1,
+                Id = 3,
                 Name = "Фанта Лимон",
                 Description = "Фанта лимон е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.",
                 Size = 250,
@@ -53,7 +53,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             drinks.Add(drink);
             drink = new Drink()
             {
-                Id = 1,
+                Id = 4,
                 Name = "Cappy Праскова",
                 Description = "Освежаваща негазирана плодова напитка с пюре от праскова. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.",
                 Size = 1000,
@@ -65,7 +65,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             drinks.Add(drink);
             drink = new Drink()
             {
-                Id = 1,
+                Id = 5,
                 Name = "Cappy Портокал",
                 Description = "Cappy създава изключително вкусни сокове, нектари и плодови напитки вече над 60 години и вярваме, че прекрасният вкус на плодовете може да бъде източник на удоволствие и наслада всеки ден.",
                 Size = 1000,
@@ -77,7 +77,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             drinks.Add(drink);
             drink = new Drink()
             {
-                Id = 1,
+                Id = 6,
                 Name = "Cappy Вишна",
                 Description = "Освежаваща негазирана плодова напитка с пюре от вишни. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.",
                 Size = 1000,

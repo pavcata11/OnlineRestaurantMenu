@@ -1,6 +1,7 @@
 ﻿using OnlineRestaurantMenu.Infrastructure.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static OnlineRestaurantMenu.Infrastructure.Data.Constants.DataConstants.Drink;
 
 namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
@@ -37,5 +38,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
 
         [Required]
         public int Calories { get; set; }
+        public Order Order { get; set; }
     }
 }

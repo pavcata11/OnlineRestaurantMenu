@@ -30,5 +30,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [Required]
         public int TypeId { get; set; }
 
+        public Order Order { get; set; }
+
     }
 }

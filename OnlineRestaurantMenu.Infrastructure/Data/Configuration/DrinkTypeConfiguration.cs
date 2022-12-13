@@ -31,14 +31,14 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             drinkTypes.Add(type);
             type = new DrinkType()
             {
-                Id = 2,
+                Id = 3,
                 Type = "Фрешове",
                 Image = "https://cache2.24chasa.bg/Images/cache/281/Image_6207281_128_0.jpg"
             };
             drinkTypes.Add(type);
             type = new DrinkType()
             {
-                Id = 2,
+                Id = 4,
                 Type = "Кафета",
                 Image = "https://cdn4.focus.bg/fakti/photos/original/8ac/zdravoslovno-e-da-piem-po-6-ili-7-kafeta-na-den-6.jpg"
             };
