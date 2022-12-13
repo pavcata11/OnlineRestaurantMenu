@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\waiter.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\waiter.css" />
     <None Include="wwwroot\css\CardTypes.css" />
   </ItemGroup>
 
@@ -27,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Models\NewFolder\" />
+    <Folder Include="wwwroot\css\NewFolder\" />
   </ItemGroup>
 
 </Project>
