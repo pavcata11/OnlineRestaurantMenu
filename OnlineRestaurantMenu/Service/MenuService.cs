@@ -35,6 +35,8 @@ namespace OnlineRestaurantMenu.Service
                 Calories = x.Calories,
                 Description = x.Description,
                 TimeToGet = x.CookingTime,
+                Image = x.Image,  
+                Size = x.Size
 
             }).ToListAsync();
         }

@@ -156,6 +156,7 @@ namespace OnlineRestaurantMenu.Service
 
         public async Task AddFoodAsync(AddProductModel model)
         {
+          
             var entity = new Foods()
             {
                 Name = model.Name,
@@ -170,8 +171,13 @@ namespace OnlineRestaurantMenu.Service
             await context.SaveChangesAsync();
         }
 
-        public async Task<FoodModel> EditFood(int? id)
+        public async Task<FoodModel?> EditFood(int? id)
         {
+            var types = await context.FoodTypes.Select(x => new DrinkTypesModel
+            {
+                Id = x.Id,
+                Name = x.Type
+            }).ToListAsync();
             return await context.Foods.Where(x => x.Id == id).Include(x => x.Type).Select(x => new FoodModel()
             {
                 Id = x.Id,
@@ -182,7 +188,8 @@ namespace OnlineRestaurantMenu.Service
                 Size = x.Size,
                 Calories = x.Calories,
                 TimeToGet = x.CookingTime,
-                Image = x.Image
+                Image = x.Image,
+                FoodType = types,
             }).FirstOrDefaultAsync();
         }
 

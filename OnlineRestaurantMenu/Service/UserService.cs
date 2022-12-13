@@ -76,7 +76,8 @@ namespace OnlineRestaurantMenu.Service
             if (u != null)
             {
                 await userManager.RemoveFromRoleAsync(u, "Admin");
-                await userManager.RemoveFromRoleAsync(u, "Server");
+                await userManager.RemoveFromRoleAsync(u, "Waiter");
+                await userManager.RemoveFromRoleAsync(u, "User");
             }
             context.SaveChanges();
             var entity = await context.Users.Where(x => x.Id == model.Id).FirstOrDefaultAsync();

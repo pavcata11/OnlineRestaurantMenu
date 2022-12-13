@@ -19,7 +19,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
             {
                 Id = 1,
                 Type = "Безалкохолни",
-                Image = "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg"
+                Image = "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg"
             };
             drinkTypes.Add(type);
             type = new DrinkType()
@@ -36,14 +36,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Configuration
                 Image = "https://cache2.24chasa.bg/Images/cache/281/Image_6207281_128_0.jpg"
             };
             drinkTypes.Add(type);
-            type = new DrinkType()
-            {
-                Id = 4,
-                Type = "Кафета",
-                Image = "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg"
-            };
-
-            drinkTypes.Add(type);
+           
 
             return drinkTypes;
         }

@@ -90,7 +90,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Constants
             public const int USER_SECOND_NAME_MAX_LENGTH = 40;
             public const int USER_SECOND_NAME_MIN_LENGTH = 4;
             public const int USER_LAST_NAME_MAX_LENGTH = 40;
-            public const int USER_LAST_NAME_MIN_LENGTH = 40;
+            public const int USER_LAST_NAME_MIN_LENGTH = 4;
             public const int UserUsernameMinLength = 5;
             public const int UserUsernameMaxLength = 50;
             public const int UserEmailMinLength = 10;

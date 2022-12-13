@@ -30,7 +30,7 @@ border-end-start-radius:80px;
             <div class="col-sm-6 col-md-6 col-lg-4">
                 <div class="food-card">
                     <div class="food-card_img">
-                        <img src="https://i.imgur.com/eFWRUuR.jpg" alt="">
+                        <img src="@food.Image" alt="">
                     </div>
                     <div class="food-card_content">
                         <div class="food-card_title-section">
@@ -38,19 +38,19 @@ border-end-start-radius:80px;
                             <div class="row">
                                 <div class="col text-center">
 
-                                    <img src="~/svg/weight-svgrepo-com.svg" alt="" width="25px" height="25px" style="vertical-align: text-bottom;" />250гр.
+                                    <img src="~/svg/weight-svgrepo-com.svg" alt="" width="25px" height="25px" style="vertical-align: text-bottom;" />@food.Size
 
 
                                 </div>
                                 <div class="col text-center">
-                                    <img src="~/svg/stopwatch.svg" alt="" width="25px" height="25px" style="vertical-align: text-bottom;" />30мин.
+                                    <img src="~/svg/stopwatch.svg" alt="" width="25px" height="25px" style="vertical-align: text-bottom;" />@food.TimeToGet мин.
                                 </div>
                                 <div class="col text-center">
-                                    <img src="~/svg/egg-fried.svg" alt="" width="25px" height="25px" style="vertical-align: text-bottom;" />180kcal.
+                                    <img src="~/svg/egg-fried.svg" alt="" width="25px" height="25px" style="vertical-align: text-bottom;" />@food.Calories Kcal
                                 </div>
 
                             </div>
-                            <p>Продукти: домати,краставици, зелен лук,печени чушки,стерелизирани гъби,шунка,сирене,яйца сварени,магданоз, маслини</p>
+                            <p>@food.Description</p>
                         </div>
                         <div class="food-card_bottom-section">
                             @*<div class="space-between">
@@ -61,7 +61,7 @@ border-end-start-radius:80px;
                             <hr>
                             <div class="space-between">
                                 <div class="food-card_price">
-                                    <span>8.20лв</span>
+                                    <span>@food.Price лв.</span>
                                 </div>
                                 <div class="food-card_order-count">
                                     <div class="input-group mb-3">

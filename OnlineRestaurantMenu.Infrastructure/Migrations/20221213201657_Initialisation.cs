@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineRestaurantMenu.Infrastructure.Migrations
 {
-    public partial class initialisation : Migration
+    public partial class Initialisation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -343,6 +343,21 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "8572e5a7-c0cb-4b91-a456-ecf092ac4e81", "2", "USER", "User" },
+                    { "c7b013f0-5201-4317-abd8-c211f91b7330", "2", "WAITER", "Waiter" },
+                    { "fab4fac1-c546-41de-aebc-a14da6895711", "1", "Admin", "Admin" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Age", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, 0, "46cfaf7d-9c6b-4102-87b3-a3517f55aeaa", "admin@gmail.com", false, "Pesho", "Ivanov", false, null, null, null, null, "1234567890", false, "bbe4723d-17b9-4053-aee3-57906cf18c3d", false, "Admin" });
+
+            migrationBuilder.InsertData(
                 table: "Cafe",
                 columns: new[] { "Id", "Name", "OwnerFirstName", "OwnerLastName", "OwnerSecondName" },
                 values: new object[] { 1, "Трите Щерки", "Павел", "Иванчев", "Даниелов" });
@@ -377,6 +392,11 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     { 2, "Лимон", 1m },
                     { 3, "Мед", 1m }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "fab4fac1-c546-41de-aebc-a14da6895711", "b74ddd14-6340-4840-95c2-db12554843e5" });
 
             migrationBuilder.InsertData(
                 table: "Drinks",

@@ -4,6 +4,8 @@ using OnlineRestaurantMenu.Infrastructure.Data;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
 using OnlineRestaurantMenu.Contracts;
 using OnlineRestaurantMenu.Service;
+using static Dropbox.Api.TeamLog.EventCategory;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 builder.Services.AddDefaultIdentity<User>(options =>
 {
     options.SignIn.RequireConfirmedAccount = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedAccount");
@@ -33,6 +34,8 @@ builder.Services.AddScoped<IProductServise, ProductService>();
 builder.Services.AddScoped<IUserServise, UserService>();
 builder.Services.AddControllersWithViews();
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -51,6 +54,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 
 app.UseAuthentication();
 app.UseAuthorization();

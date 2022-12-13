@@ -12,8 +12,8 @@ using OnlineRestaurantMenu.Infrastructure.Data;
 namespace OnlineRestaurantMenu.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221213184549_initialisation")]
-    partial class initialisation
+    [Migration("20221213205339_tableConfiguration")]
+    partial class tableConfiguration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,29 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "fab4fac1-c546-41de-aebc-a14da6895711",
+                            ConcurrencyStamp = "1",
+                            Name = "Admin",
+                            NormalizedName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "c7b013f0-5201-4317-abd8-c211f91b7330",
+                            ConcurrencyStamp = "2",
+                            Name = "WAITER",
+                            NormalizedName = "Waiter"
+                        },
+                        new
+                        {
+                            Id = "8572e5a7-c0cb-4b91-a456-ecf092ac4e81",
+                            ConcurrencyStamp = "2",
+                            Name = "USER",
+                            NormalizedName = "User"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -138,6 +161,23 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "b74ddd14-6340-4840-95c2-db12554843e5",
+                            RoleId = "fab4fac1-c546-41de-aebc-a14da6895711"
+                        },
+                        new
+                        {
+                            UserId = "5176633b-6d3f-405f-8f75-adc61261d6d3",
+                            RoleId = "c7b013f0-5201-4317-abd8-c211f91b7330"
+                        },
+                        new
+                        {
+                            UserId = "4b7f2886-0c38-41b3-8281-b6fc1f465838",
+                            RoleId = "8572e5a7-c0cb-4b91-a456-ecf092ac4e81"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -607,6 +647,35 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.HasIndex("WaiterId");
 
                     b.ToTable("Tables");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountOfSeats = 4,
+                            Description = "Масата се намира на до прозореца",
+                            Number = 1,
+                            TableStatus = 0,
+                            WaiterId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountOfSeats = 5,
+                            Description = "Втората маса до прозореца",
+                            Number = 2,
+                            TableStatus = 0,
+                            WaiterId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountOfSeats = 10,
+                            Description = "Централната маса в първа зала",
+                            Number = 3,
+                            TableStatus = 0,
+                            WaiterId = 1
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.User", b =>
@@ -685,6 +754,57 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b74ddd14-6340-4840-95c2-db12554843e5",
+                            AccessFailedCount = 0,
+                            Age = 0,
+                            ConcurrencyStamp = "e2270e95-f008-423a-b600-5cba28913d12",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Pesho",
+                            LastName = "Ivanov",
+                            LockoutEnabled = false,
+                            PhoneNumber = "1234567890",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7e76cee5-59fd-4c3c-acf3-6c146bbd1c9b",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "5176633b-6d3f-405f-8f75-adc61261d6d3",
+                            AccessFailedCount = 0,
+                            Age = 0,
+                            ConcurrencyStamp = "80d078dd-ca0a-431e-81b6-ca3a2018fde8",
+                            Email = "pavel@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Pavel",
+                            LastName = "Ivanchev",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "867eed6e-cb07-419f-be68-9f449c512381",
+                            TwoFactorEnabled = false,
+                            UserName = "Pavel"
+                        },
+                        new
+                        {
+                            Id = "4b7f2886-0c38-41b3-8281-b6fc1f465838",
+                            AccessFailedCount = 0,
+                            Age = 0,
+                            ConcurrencyStamp = "1f9da483-94d5-409b-94f1-4b720bd0faf4",
+                            Email = "daniel@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Daniel",
+                            LastName = "Ivanchev",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "709ec14e-c117-494e-bade-288f9fe19b36",
+                            TwoFactorEnabled = false,
+                            UserName = "Daniel"
+                        });
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Waiter", b =>
@@ -707,6 +827,14 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Waiters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateStartWork = new DateTime(2022, 12, 13, 22, 53, 39, 469, DateTimeKind.Local).AddTicks(1881),
+                            UserId = "4b7f2886-0c38-41b3-8281-b6fc1f465838"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
