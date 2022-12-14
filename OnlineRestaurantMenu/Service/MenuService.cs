@@ -2,11 +2,12 @@
 using OnlineRestaurantMenu.Contracts;
 using OnlineRestaurantMenu.Infrastructure.Data;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
-using OnlineRestaurantMenu.Models;
+using OnlineRestaurantMenu.Models.Menu;
+using OnlineRestaurantMenu.Models.Product;
 
 namespace OnlineRestaurantMenu.Service
 {
-    public class MenuService : IMenuServise
+    public class MenuService :IMenuServise
     {
         private readonly ApplicationDbContext context;
         public MenuService(ApplicationDbContext _context)
@@ -16,26 +17,27 @@ namespace OnlineRestaurantMenu.Service
 
         public async Task<IEnumerable<MenuFoodModel>> GetAllDrinkTypesAsync()
         {
-            return await context.DrinkTypes
+            return await context.ProductSecondaryTypes
+                .Where(x=>x.Id==1)
              .Select(m => new MenuFoodModel()
              {
-                 Type = m.Type,
+                 Type =  m.Name,
                  Image = m.Image
 
              }).ToListAsync();
         }
 
-        public async Task<IEnumerable<Food>> GetAllFoodByType(int id)
+        public async Task<IEnumerable<ProductModel>> GetAllFoodByType(int id)
         {
-            return await context.Foods.Where(x => x.TypeId == id).Select(x => new Food
+            return await context.Products.Where(x => x.ProductSecondaryTypeId == id).Select(x => new ProductModel
             {
-                Id = x.Id,  
+                Id = x.Id,
                 Name = x.Name,
                 Price = x.Price,
                 Calories = x.Calories,
                 Description = x.Description,
-                TimeToGet = x.CookingTime,
-                Image = x.Image,  
+                TimeToGet = x.TimeToget,
+                Image = x.Image,
                 Size = x.Size
 
             }).ToListAsync();
@@ -43,27 +45,15 @@ namespace OnlineRestaurantMenu.Service
 
         public async Task<IEnumerable<MenuFoodModel>> GetAllFoodTypesAsync()
         {
-            return await context.FoodTypes
+            return await context.ProductSecondaryTypes
+                 .Where(x => x.Id == 2)
                 .Select(m => new MenuFoodModel()
                 {
-                    Id = m.Id,
-                    Type = m.Type,
+                    Type = m.Name,
                     Image = m.Image
 
                 }).ToListAsync();
         }
-
-        public async Task AddFoodInOrder(int id)
-        {
-            var result = await context.Foods.Where(x => x.Id == id).FirstOrDefaultAsync();
-            var entity = new Order()
-            {
-            
-            };
-        
-           
-        }
-
 
     }
 }

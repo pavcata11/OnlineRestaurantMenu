@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineRestaurantMenu.Infrastructure.Migrations
 {
-    public partial class Initialisation : Migration
+    public partial class initialisation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,6 +31,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
+                    CurrentOrderId = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -52,61 +53,16 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cafe",
+                name: "ProductTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    OwnerFirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    OwnerSecondName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    OwnerLastName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
+                    Type = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cafe", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DrinkTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DrinkTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FoodTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FoodTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Supplements",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Supplements", x => x.Id);
+                    table.PrimaryKey("PK_ProductTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,27 +172,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    IsPay = table.Column<bool>(type: "bit", nullable: false),
-                    CallToWaiter = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Waiters",
                 columns: table => new
                 {
@@ -257,66 +192,24 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Drinks",
+                name: "ProductSecondaryTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DrinkTyepeId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    Size = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Calories = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Drinks", x => x.Id);
+                    table.PrimaryKey("PK_ProductSecondaryTypes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Drinks_DrinkTypes_DrinkTyepeId",
-                        column: x => x.DrinkTyepeId,
-                        principalTable: "DrinkTypes",
+                        name: "FK_ProductSecondaryTypes_ProductTypes_ProductTypeId",
+                        column: x => x.ProductTypeId,
+                        principalTable: "ProductTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Drinks_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Foods",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    Size = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CookingTime = table.Column<int>(type: "int", nullable: false),
-                    Calories = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TypeId = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Foods", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Foods_FoodTypes_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "FoodTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Foods_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -342,6 +235,86 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductSecondaryTypeId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Size = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Calories = table.Column<int>(type: "int", nullable: false),
+                    TimeToget = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductSecondaryTypes_ProductSecondaryTypeId",
+                        column: x => x.ProductSecondaryTypeId,
+                        principalTable: "ProductSecondaryTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsPay = table.Column<bool>(type: "bit", nullable: false),
+                    CallToWaiter = table.Column<bool>(type: "bit", nullable: false),
+                    TableId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Order_Tables_TableId",
+                        column: x => x.TableId,
+                        principalTable: "Tables",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CountOfSalesThisItem = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sales_Order_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Order",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sales_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -354,73 +327,75 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Age", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, 0, "46cfaf7d-9c6b-4102-87b3-a3517f55aeaa", "admin@gmail.com", false, "Pesho", "Ivanov", false, null, null, null, null, "1234567890", false, "bbe4723d-17b9-4053-aee3-57906cf18c3d", false, "Admin" });
-
-            migrationBuilder.InsertData(
-                table: "Cafe",
-                columns: new[] { "Id", "Name", "OwnerFirstName", "OwnerLastName", "OwnerSecondName" },
-                values: new object[] { 1, "Трите Щерки", "Павел", "Иванчев", "Даниелов" });
-
-            migrationBuilder.InsertData(
-                table: "DrinkTypes",
-                columns: new[] { "Id", "Image", "Type" },
+                columns: new[] { "Id", "AccessFailedCount", "Age", "ConcurrencyStamp", "CurrentOrderId", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg", "Безалкохолни" },
-                    { 2, "https://gornabania.com/media/k2/items/cache/3b77d3f73b59742412f393cd0d264b14_M.jpg", "Сокове" },
-                    { 3, "https://cache2.24chasa.bg/Images/cache/281/Image_6207281_128_0.jpg", "Фрешове" },
-                    { 4, "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg", "Кафета" }
+                    { "4b7f2886-0c38-41b3-8281-b6fc1f465838", 0, 0, "f8621e4d-6209-4527-954a-2a3d1250824d", 0, "daniel@gmail.com", false, "Daniel", "Ivanchev", false, null, null, null, null, null, false, "88c64008-95bb-4d88-84f5-3fa2d52eec85", false, "Daniel" },
+                    { "5176633b-6d3f-405f-8f75-adc61261d6d3", 0, 0, "ee6796a8-d31b-4b8f-91e3-24df95cfd79b", 0, "pavel@gmail.com", false, "Pavel", "Ivanchev", false, null, null, null, null, null, false, "80552e86-b0a8-4d28-b4ce-5fb785be8153", false, "Pavel" },
+                    { "b74ddd14-6340-4840-95c2-db12554843e5", 0, 0, "f9521e93-51d4-4627-b0e3-10c3bd25dd88", 0, "admin@gmail.com", false, "Pesho", "Ivanov", false, null, null, null, null, "1234567890", false, "0aa7dc62-33c9-4cc7-a001-dca1f57a80ba", false, "Admin" }
                 });
 
             migrationBuilder.InsertData(
-                table: "FoodTypes",
-                columns: new[] { "Id", "Image", "Type" },
+                table: "ProductTypes",
+                columns: new[] { "Id", "Type" },
                 values: new object[,]
                 {
-                    { 1, "https://domashnakunyasdani.com/wp-content/uploads/2022/06/snapshot448.jpg", "Салати" },
-                    { 2, "http://mirenaancheva.com/zashtone/wp-content/uploads/sites/2/2019/02/IMG_1232.jpg", "Основни ястия" },
-                    { 3, "https://domashnakunyasdani.com/wp-content/uploads/2022/05/snapshot34.jpg", "Супи" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Supplements",
-                columns: new[] { "Id", "Name", "Price" },
-                values: new object[,]
-                {
-                    { 1, "Захар", 1m },
-                    { 2, "Лимон", 1m },
-                    { 3, "Мед", 1m }
+                    { 1, 1 },
+                    { 2, 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "fab4fac1-c546-41de-aebc-a14da6895711", "b74ddd14-6340-4840-95c2-db12554843e5" });
-
-            migrationBuilder.InsertData(
-                table: "Drinks",
-                columns: new[] { "Id", "Calories", "Description", "DrinkTyepeId", "Image", "Name", "OrderId", "Price", "Size" },
                 values: new object[,]
                 {
-                    { 1, 80, "Ко̀ка-ко̀ла е популярна газирана безалкохолна напитка, предлагана по целия свят, една от най-известните и продавани търговски марки в света. Известна е още със съкратеното разговорно наименование ко̀ла.", 1, "https://www.fastbag.bg/wp-content/uploads/2020/07/coca-cola-2l-original.jpeg", "Кока-кола", null, 3m, 250 },
-                    { 2, 145, "Фанта портокал е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.", 1, "https://napitkite.bg/wp-content/uploads/2018/04/fanta-portokal-ken.png", "Фанта Портокал", null, 5m, 250 },
-                    { 3, 250, "Фанта лимон е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.", 1, "https://napitkite.bg/wp-content/uploads/2018/04/fanta-portokal-ken.png", "Фанта Лимон", null, 2m, 250 },
-                    { 4, 400, "Освежаваща негазирана плодова напитка с пюре от праскова. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.", 2, "https://randi.bg/image/cache/catalog/Produkti-nov/Bezalkoholni/sokove/cappy-praskova-1l-600x600.jpg", "Cappy Праскова", null, 4m, 1000 },
-                    { 5, 90, "Cappy създава изключително вкусни сокове, нектари и плодови напитки вече над 60 години и вярваме, че прекрасният вкус на плодовете може да бъде източник на удоволствие и наслада всеки ден.", 2, "https://gofood.bg/wp-content/uploads/2020/07/cappy9.jpg", "Cappy Портокал", null, 4m, 1000 },
-                    { 6, 120, "Освежаваща негазирана плодова напитка с пюре от вишни. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.", 2, "https://kancelarski.bg/userfiles/productlargeimages/product_31162.jpg", "Cappy Вишна", null, 3m, 1000 }
+                    { "8572e5a7-c0cb-4b91-a456-ecf092ac4e81", "4b7f2886-0c38-41b3-8281-b6fc1f465838" },
+                    { "c7b013f0-5201-4317-abd8-c211f91b7330", "5176633b-6d3f-405f-8f75-adc61261d6d3" },
+                    { "fab4fac1-c546-41de-aebc-a14da6895711", "b74ddd14-6340-4840-95c2-db12554843e5" }
                 });
 
             migrationBuilder.InsertData(
-                table: "Foods",
-                columns: new[] { "Id", "Calories", "CookingTime", "Description", "Image", "Name", "OrderId", "Price", "Size", "TypeId" },
+                table: "ProductSecondaryTypes",
+                columns: new[] { "Id", "Image", "Name", "ProductTypeId" },
                 values: new object[,]
                 {
-                    { 1, 80, 45, "Овчарската салата е традиционно българско ястие и модификация на шопската салата. Приготвя се от нарязани краставици, домати, лук, магданоз, печени или сурови чушки, шунка, сварено яйце, кашкавал, настъргано бяло саламурено сирене и овкусени със сол и олио.", "https://www.supichka.com/files/images/1242/fit_1400_933.jpg", "Овчарска салат", null, 3m, 250, 1 },
-                    { 2, 80, 45, "Салата „Цезар“ е популярна салата от маруля и крутони, гарнирани с пармезан, лимонов сок, зехтин, яйце, черен пипер и сос Уорчестър.", "https://www.supichka.com/files/images/1242/fit_1400_933.jpg", "Салата Цезар", null, 3m, 250, 1 },
-                    { 3, 80, 45, "Мусака! Царицата на българската кухня! Едно от най-обичаните и най-често приготвяните ястия. Мусаката е абсолютният любимец както на всеки българин, така и на чужденците.", "https://www.supichka.com/files/images/1242/fit_1400_933.jpg", "Мусака", null, 3m, 250, 2 },
-                    { 4, 80, 45, "Боб и карначета - перфектната комбинация за едно вкусно похапване", "https://www.supichka.com/files/images/1242/fit_1400_933.jpg", "Боб с карначета", null, 3m, 250, 3 }
+                    { 1, "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg", "Безалкохолни", 1 },
+                    { 2, "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg", "Салати", 2 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Waiters",
+                columns: new[] { "Id", "DateStartWork", "UserId" },
+                values: new object[] { 1, new DateTime(2022, 12, 14, 19, 1, 5, 221, DateTimeKind.Local).AddTicks(3845), "4b7f2886-0c38-41b3-8281-b6fc1f465838" });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Calories", "Description", "Image", "Name", "Price", "ProductSecondaryTypeId", "Size", "TimeToget" },
+                values: new object[,]
+                {
+                    { 1, 200, "Описание на кока-кола някакъв текст", "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg", "Кока-кола", 4m, 1, 250, 2 },
+                    { 2, 450, "Описание на овчарска салата", "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg", "Овчарска салата", 9.45m, 2, 250, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tables",
+                columns: new[] { "Id", "CountOfSeats", "Description", "Number", "TableStatus", "WaiterId" },
+                values: new object[,]
+                {
+                    { 1, 4, "Масата се намира на до прозореца", 1, 0, 1 },
+                    { 2, 5, "Втората маса до прозореца", 2, 0, 1 },
+                    { 3, 10, "Централната маса в първа зала", 3, 0, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Order",
+                columns: new[] { "Id", "CallToWaiter", "IsPay", "TableId", "UserId" },
+                values: new object[] { 1, false, false, 1, "4b7f2886-0c38-41b3-8281-b6fc1f465838" });
+
+            migrationBuilder.InsertData(
+                table: "Sales",
+                columns: new[] { "Id", "CountOfSalesThisItem", "OrderId", "ProductId" },
+                values: new object[] { 1, 5, 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -462,29 +437,34 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Drinks_DrinkTyepeId",
-                table: "Drinks",
-                column: "DrinkTyepeId");
+                name: "IX_Order_TableId",
+                table: "Order",
+                column: "TableId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Drinks_OrderId",
-                table: "Drinks",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Foods_OrderId",
-                table: "Foods",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Foods_TypeId",
-                table: "Foods",
-                column: "TypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_UserId",
-                table: "Orders",
+                name: "IX_Order_UserId",
+                table: "Order",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductSecondaryTypeId",
+                table: "Products",
+                column: "ProductSecondaryTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductSecondaryTypes_ProductTypeId",
+                table: "ProductSecondaryTypes",
+                column: "ProductTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sales_OrderId",
+                table: "Sales",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sales_ProductId",
+                table: "Sales",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tables_WaiterId",
@@ -515,34 +495,28 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Cafe");
-
-            migrationBuilder.DropTable(
-                name: "Drinks");
-
-            migrationBuilder.DropTable(
-                name: "Foods");
-
-            migrationBuilder.DropTable(
-                name: "Supplements");
-
-            migrationBuilder.DropTable(
-                name: "Tables");
+                name: "Sales");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "DrinkTypes");
+                name: "Order");
 
             migrationBuilder.DropTable(
-                name: "FoodTypes");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Tables");
+
+            migrationBuilder.DropTable(
+                name: "ProductSecondaryTypes");
 
             migrationBuilder.DropTable(
                 name: "Waiters");
+
+            migrationBuilder.DropTable(
+                name: "ProductTypes");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

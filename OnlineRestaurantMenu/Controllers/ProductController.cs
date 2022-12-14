@@ -1,25 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRestaurantMenu.Contracts;
 using OnlineRestaurantMenu.DropBox;
+using OnlineRestaurantMenu.Infrastructure.Data.Entity;
 using OnlineRestaurantMenu.Models;
 using OnlineRestaurantMenu.Models.Product;
+using OnlineRestaurantMenu.Models.Role;
 using OnlineRestaurantMenu.Service;
 
 namespace OnlineRestaurantMenu.Controllers
 {
-    public class ProductController:Controller
+    public class ProductController : Controller
     {
         private readonly IProductServise productService;
         public ProductController(IProductServise _productServise)
         {
             productService = _productServise;
         }
+
         [HttpGet]
         public async Task<IActionResult> AddDrink()
         {
-            AddDrinkModel model = new AddDrinkModel()
+            AddProductModel model = new AddProductModel()
             {
-                DrinkTypes = await productService.GetDrinkTypesAsync()
+                ProductTypes = (List<ProductTypesModel>)await productService.GetDrinkTypesAsync(),
             };
             return View(model);
         }
@@ -28,15 +31,14 @@ namespace OnlineRestaurantMenu.Controllers
         {
             var model = new AddProductModel()
             {
-                FoodType = await productService.GetFoodTypesAsync()
+                ProductTypes = (List<ProductTypesModel>)await productService.GetFoodTypesAsync()
             };
 
             return View(model);
         }
-     
-        
+
         [HttpPost]
-        public async Task<IActionResult> AddDrink(AddDrinkModel model )
+        public async Task<IActionResult> AddDrink(AddProductModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -44,7 +46,7 @@ namespace OnlineRestaurantMenu.Controllers
             }
             try
             {
-                await productService.AddDrinkAsync(model);
+                await productService.AddProductAsync(model);
                 return RedirectToAction(nameof(AllDrinks));
             }
             catch (Exception)
@@ -53,7 +55,6 @@ namespace OnlineRestaurantMenu.Controllers
                 return View(model);
             }
         }
-
         [HttpPost]
         public async Task<IActionResult> AddFood(AddProductModel model)
         {
@@ -64,71 +65,6 @@ namespace OnlineRestaurantMenu.Controllers
             try
             {
                 await productService.AddFoodAsync(model);
-                return RedirectToAction(nameof(AddFood));
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("", "Something went wrong");
-                return View(model);
-            }
-        }
-        [HttpGet]
-        public async Task<IActionResult> EditDrink(int Id)
-        {
-           var model = await productService.EditDrink(Id);
-           return View(model);
-        }
-        [HttpGet]
-        public async Task<IActionResult> EditFood(int Id)
-        {
-            var model = await productService.EditFood(Id);
-            return View(model);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> RemoveDrink(int Id)
-        {
-            await productService.RemoveDrinkAsync(Id);
-            return RedirectToAction(nameof(AllDrinks));
-        }
-        [HttpGet]
-        public async Task<IActionResult> RemoveFood(int Id)
-        {
-            await productService.RemoveFoodAsync(Id);
-            return RedirectToAction(nameof(AllFoods));
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> EditDrink(DrinkModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            try
-            {
-                await productService.EditDrinkAsync(model);
-                return RedirectToAction(nameof(AllDrinks));
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("", "Something went wrong");
-                return View(model);
-            }
-          
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EditFood(FoodModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            try
-            {
-                await productService.EditFoodAsync(model);
                 return RedirectToAction(nameof(AllFoods));
             }
             catch (Exception)
@@ -136,13 +72,9 @@ namespace OnlineRestaurantMenu.Controllers
                 ModelState.AddModelError("", "Something went wrong");
                 return View(model);
             }
-
         }
-
-
-
         [HttpGet]
-        public async Task<IActionResult> AllDrinks(int pg=1)
+        public async Task<IActionResult> AllDrinks(int pg = 1)
         {
             var model = await productService.GetAllDrinksAsync();
 
@@ -152,14 +84,13 @@ namespace OnlineRestaurantMenu.Controllers
                 pg = 1;
             }
             int resCount = model.Count();
-            var pager = new Pager(resCount,pg,pageSize);
-            int recSkip = (pg-1) * pageSize;
+            var pager = new Pager(resCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
             var data = model.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
 
             return View(data);
         }
-
         [HttpGet]
         public async Task<IActionResult> AllFoods(int pg = 1)
         {
@@ -178,7 +109,82 @@ namespace OnlineRestaurantMenu.Controllers
 
             return View(data);
         }
+        [HttpGet]
+        public async Task<IActionResult> EditDrink(int Id)
+        {
+            var model = await productService.EditDrink(Id);
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditFood(int Id)
+        {
+            var model = await productService.EditFood(Id);
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> RemoveProduct(int Id)
+        {
+            await productService.RemoveProductAsync(Id);
+            if (Id == 1)
+            {
+                return RedirectToAction(nameof(AllDrinks));
+            }
+            else
+            {
+                return RedirectToAction(nameof(AllFoods));
+            }
+            
+            
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditDrink(ProductModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                await productService.EditProduct(model);
+                return RedirectToAction(nameof(AllDrinks));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return View(model);
+            }
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditFood(ProductModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                await productService.EditProduct(model);
+                return RedirectToAction(nameof(AllFoods));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return View(model);
+            }
+
+        }
+
+        
+
 
 
     }
 }
+
+
+    
+    
+    
+    
+

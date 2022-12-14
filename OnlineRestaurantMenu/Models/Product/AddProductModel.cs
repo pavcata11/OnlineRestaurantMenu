@@ -2,7 +2,7 @@
 using static OnlineRestaurantMenu.Infrastructure.Data.Constants.DataConstants.Drink;
 namespace OnlineRestaurantMenu.Models.Product
 {
-    public class AddDrinkModel : ReponseModel
+    public class AddProductModel 
     {
         [Required]
         [StringLength(DRINK_NAME_MAX_LENGTH, MinimumLength = DRINK_NAME_MIN_LENGTH)]
@@ -23,20 +23,11 @@ namespace OnlineRestaurantMenu.Models.Product
         [StringLength(DRINK_IMAGE_MAX_LENGTH, MinimumLength = DRINK_IMAGE_MIN_LENGTH)]
         public string Image { get; set; } = null!;
         [Required]
-        public int TypeId { get; set; }
-        public IEnumerable<DrinkTypesModel> DrinkTypes { get; set; } = new List<DrinkTypesModel>();
-       
-        [Required]
-        public IFormFile File { get; set; } = null!;
+        public int TimeToGet { get; set; }
+        public int ProductTypeId { get; set; }
+        public List<ProductTypesModel> ProductTypes { get; set; } = new List<ProductTypesModel>();
+
+
     }
-    public class ReponseModel
-    {
-        public ReponseModel()
-        {
-            IsResponse = false;
-            IsSuccess = false;
-        }
-        public bool IsSuccess { get; set; }
-        public bool IsResponse { get; set; }
-    }
+   
 }

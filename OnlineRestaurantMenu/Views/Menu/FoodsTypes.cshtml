@@ -1,6 +1,7 @@
-﻿@model IEnumerable<MenuFoodModel>
+﻿@using OnlineRestaurantMenu.Models.Menu;
+@model IEnumerable<MenuFoodModel>
     @{
-        ViewBag.Title = "Watchlist";
+      
     }
     <div class="container pb-5" style="background-color:rgb(220,220,220,0.1)">
     <partial name="_MenuPartial" />
@@ -9,13 +10,11 @@
             {
                     
                 <div class="ar-image m-3">
-                    <div style="background: url('@type.Image');  background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            border-radius:30px" class="article-image">
-
-                   
-        </div>
+                <div style="background: url('@type.Image');  background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius:30px" class="article-image">
+                </div>
                 <p class="h2"> @Html.ActionLink(type.Type, "FoodsByType", new { Id = type.Id })</p>
                 </div>
             }

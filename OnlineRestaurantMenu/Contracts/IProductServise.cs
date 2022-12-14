@@ -6,19 +6,17 @@ namespace OnlineRestaurantMenu.Contracts
 {
     public interface IProductServise
     {
-        public Task<IEnumerable<DrinkTypesModel>> GetDrinkTypesAsync();
-        public Task<IEnumerable<DrinkTypesModel>> GetFoodTypesAsync();
-        public Task AddDrinkAsync(AddDrinkModel model);
+        public Task AddProductAsync(AddProductModel model);
+        public Task<Product?> EditProductAsync(int id);
+        public  Task<IEnumerable<ProductModel>> GetAllDrinksAsync();
+        public Task<IEnumerable<ProductTypesModel>> GetDrinkTypesAsync();
+        public Task RemoveProductAsync(int id);
+        public Task<ProductModel?> EditDrink(int? id);
+        public  Task<IEnumerable<ProductTypesModel>> GetFoodTypesAsync();
         public Task AddFoodAsync(AddProductModel model);
-        public Task<DrinkModel> EditDrink(int? id);
-        public Task<FoodModel> EditFood(int? id);
-        public Task<Drink> EditDrinkAsync(DrinkModel model);
-        public Task<Foods> EditFoodAsync(FoodModel model);
-
-        public Task<IEnumerable<DrinkModel>> GetAllDrinksAsync();
-        public Task<IEnumerable<FoodModel>> GetAllFoodsAsync();
-        public Task RemoveDrinkAsync(int id);
-        public Task RemoveFoodAsync(int id);
+        public Task<ProductModel?> EditFood(int? id);
+        public Task<Product> EditProduct(ProductModel model);
+        public Task<IEnumerable<ProductModel>> GetAllFoodsAsync();
 
     }
 }

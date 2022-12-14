@@ -1,6 +1,6 @@
-﻿namespace OnlineRestaurantMenu.Models
+﻿namespace OnlineRestaurantMenu.Models.Product
 {
-    public class Food
+    public class ProductModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -9,7 +9,9 @@
         public string Description { get; set; }
         public int TimeToGet { get; set; }
         public string Image { get; set; }
-        public int  Size { get; set; }
+        public int Size { get; set; }
+        public int ProductTypeId { get; set; }
+        public List<ProductTypesModel> ProductTypes { get; set; } = new List<ProductTypesModel>();
 
     }
 }

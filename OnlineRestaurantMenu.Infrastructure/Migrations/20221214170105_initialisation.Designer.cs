@@ -12,8 +12,8 @@ using OnlineRestaurantMenu.Infrastructure.Data;
 namespace OnlineRestaurantMenu.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221213205339_tableConfiguration")]
-    partial class tableConfiguration
+    [Migration("20221214170105_initialisation")]
+    partial class initialisation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -201,356 +201,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Cafe", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("OwnerFirstName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("OwnerLastName")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("OwnerSecondName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cafe");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Трите Щерки",
-                            OwnerFirstName = "Павел",
-                            OwnerLastName = "Иванчев",
-                            OwnerSecondName = "Даниелов"
-                        });
-                });
-
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Drink", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Calories")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<int>("DrinkTyepeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DrinkTyepeId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Drinks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Calories = 80,
-                            Description = "Ко̀ка-ко̀ла е популярна газирана безалкохолна напитка, предлагана по целия свят, една от най-известните и продавани търговски марки в света. Известна е още със съкратеното разговорно наименование ко̀ла.",
-                            DrinkTyepeId = 1,
-                            Image = "https://www.fastbag.bg/wp-content/uploads/2020/07/coca-cola-2l-original.jpeg",
-                            Name = "Кока-кола",
-                            Price = 3m,
-                            Size = 250
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Calories = 145,
-                            Description = "Фанта портокал е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.",
-                            DrinkTyepeId = 1,
-                            Image = "https://napitkite.bg/wp-content/uploads/2018/04/fanta-portokal-ken.png",
-                            Name = "Фанта Портокал",
-                            Price = 5m,
-                            Size = 250
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Calories = 250,
-                            Description = "Фанта лимон е плодова газирана напитка, която създава страхотен бълбукащ вкус в устата през моментите на забавление с приятели. Освежаващите балончета на Fanta предизвикват сетивата по уникално приятен начин.",
-                            DrinkTyepeId = 1,
-                            Image = "https://napitkite.bg/wp-content/uploads/2018/04/fanta-portokal-ken.png",
-                            Name = "Фанта Лимон",
-                            Price = 2m,
-                            Size = 250
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Calories = 400,
-                            Description = "Освежаваща негазирана плодова напитка с пюре от праскова. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.",
-                            DrinkTyepeId = 2,
-                            Image = "https://randi.bg/image/cache/catalog/Produkti-nov/Bezalkoholni/sokove/cappy-praskova-1l-600x600.jpg",
-                            Name = "Cappy Праскова",
-                            Price = 4m,
-                            Size = 1000
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Calories = 90,
-                            Description = "Cappy създава изключително вкусни сокове, нектари и плодови напитки вече над 60 години и вярваме, че прекрасният вкус на плодовете може да бъде източник на удоволствие и наслада всеки ден.",
-                            DrinkTyepeId = 2,
-                            Image = "https://gofood.bg/wp-content/uploads/2020/07/cappy9.jpg",
-                            Name = "Cappy Портокал",
-                            Price = 4m,
-                            Size = 1000
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Calories = 120,
-                            Description = "Освежаваща негазирана плодова напитка с пюре от вишни. От концентрат. Плодово съдържание мин. 42%.\r\nПастьоризиран продукт. Не съдържа консерванти.",
-                            DrinkTyepeId = 2,
-                            Image = "https://kancelarski.bg/userfiles/productlargeimages/product_31162.jpg",
-                            Name = "Cappy Вишна",
-                            Price = 3m,
-                            Size = 1000
-                        });
-                });
-
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.DrinkType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DrinkTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Image = "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg",
-                            Type = "Безалкохолни"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Image = "https://gornabania.com/media/k2/items/cache/3b77d3f73b59742412f393cd0d264b14_M.jpg",
-                            Type = "Сокове"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Image = "https://cache2.24chasa.bg/Images/cache/281/Image_6207281_128_0.jpg",
-                            Type = "Фрешове"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Image = "https://raffyplovdiv.bg/files/images/749/fit_536_406.jpg",
-                            Type = "Кафета"
-                        });
-                });
-
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Foods", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Calories")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CookingTime")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("TypeId");
-
-                    b.ToTable("Foods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Calories = 80,
-                            CookingTime = 45,
-                            Description = "Овчарската салата е традиционно българско ястие и модификация на шопската салата. Приготвя се от нарязани краставици, домати, лук, магданоз, печени или сурови чушки, шунка, сварено яйце, кашкавал, настъргано бяло саламурено сирене и овкусени със сол и олио.",
-                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
-                            Name = "Овчарска салат",
-                            Price = 3m,
-                            Size = 250,
-                            TypeId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Calories = 80,
-                            CookingTime = 45,
-                            Description = "Салата „Цезар“ е популярна салата от маруля и крутони, гарнирани с пармезан, лимонов сок, зехтин, яйце, черен пипер и сос Уорчестър.",
-                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
-                            Name = "Салата Цезар",
-                            Price = 3m,
-                            Size = 250,
-                            TypeId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Calories = 80,
-                            CookingTime = 45,
-                            Description = "Мусака! Царицата на българската кухня! Едно от най-обичаните и най-често приготвяните ястия. Мусаката е абсолютният любимец както на всеки българин, така и на чужденците.",
-                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
-                            Name = "Мусака",
-                            Price = 3m,
-                            Size = 250,
-                            TypeId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Calories = 80,
-                            CookingTime = 45,
-                            Description = "Боб и карначета - перфектната комбинация за едно вкусно похапване",
-                            Image = "https://www.supichka.com/files/images/1242/fit_1400_933.jpg",
-                            Name = "Боб с карначета",
-                            Price = 3m,
-                            Size = 250,
-                            TypeId = 3
-                        });
-                });
-
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.FoodType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FoodTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Image = "https://domashnakunyasdani.com/wp-content/uploads/2022/06/snapshot448.jpg",
-                            Type = "Салати"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Image = "http://mirenaancheva.com/zashtone/wp-content/uploads/sites/2/2019/02/IMG_1232.jpg",
-                            Type = "Основни ястия"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Image = "https://domashnakunyasdani.com/wp-content/uploads/2022/05/snapshot34.jpg",
-                            Type = "Супи"
-                        });
-                });
-
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -565,18 +215,33 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.Property<bool>("IsPay")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("TableId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TableId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CallToWaiter = false,
+                            IsPay = false,
+                            TableId = 1,
+                            UserId = "4b7f2886-0c38-41b3-8281-b6fc1f465838"
+                        });
                 });
 
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Supplements", b =>
+            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -584,36 +249,168 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Calories")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("ProductSecondaryTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeToget")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Supplements");
+                    b.HasIndex("ProductSecondaryTypeId");
+
+                    b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "Захар",
-                            Price = 1m
+                            Calories = 200,
+                            Description = "Описание на кока-кола някакъв текст",
+                            Image = "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg",
+                            Name = "Кока-кола",
+                            Price = 4m,
+                            ProductSecondaryTypeId = 1,
+                            Size = 250,
+                            TimeToget = 2
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Лимон",
-                            Price = 1m
+                            Calories = 450,
+                            Description = "Описание на овчарска салата",
+                            Image = "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg",
+                            Name = "Овчарска салата",
+                            Price = 9.45m,
+                            ProductSecondaryTypeId = 2,
+                            Size = 250,
+                            TimeToget = 2
+                        });
+                });
+
+            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.ProductSecondaryType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductTypeId");
+
+                    b.ToTable("ProductSecondaryTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg",
+                            Name = "Безалкохолни",
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 3,
-                            Name = "Мед",
-                            Price = 1m
+                            Id = 2,
+                            Image = "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg",
+                            Name = "Салати",
+                            ProductTypeId = 2
+                        });
+                });
+
+            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Type = 0
+                        });
+                });
+
+            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Sales", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CountOfSalesThisItem")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Sales");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountOfSalesThisItem = 5,
+                            OrderId = 1,
+                            ProductId = 1
                         });
                 });
 
@@ -693,6 +490,9 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CurrentOrderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -761,7 +561,8 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "e2270e95-f008-423a-b600-5cba28913d12",
+                            ConcurrencyStamp = "f9521e93-51d4-4627-b0e3-10c3bd25dd88",
+                            CurrentOrderId = 0,
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Pesho",
@@ -769,7 +570,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7e76cee5-59fd-4c3c-acf3-6c146bbd1c9b",
+                            SecurityStamp = "0aa7dc62-33c9-4cc7-a001-dca1f57a80ba",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -778,14 +579,15 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "5176633b-6d3f-405f-8f75-adc61261d6d3",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "80d078dd-ca0a-431e-81b6-ca3a2018fde8",
+                            ConcurrencyStamp = "ee6796a8-d31b-4b8f-91e3-24df95cfd79b",
+                            CurrentOrderId = 0,
                             Email = "pavel@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Pavel",
                             LastName = "Ivanchev",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "867eed6e-cb07-419f-be68-9f449c512381",
+                            SecurityStamp = "80552e86-b0a8-4d28-b4ce-5fb785be8153",
                             TwoFactorEnabled = false,
                             UserName = "Pavel"
                         },
@@ -794,14 +596,15 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "4b7f2886-0c38-41b3-8281-b6fc1f465838",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "1f9da483-94d5-409b-94f1-4b720bd0faf4",
+                            ConcurrencyStamp = "f8621e4d-6209-4527-954a-2a3d1250824d",
+                            CurrentOrderId = 0,
                             Email = "daniel@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Daniel",
                             LastName = "Ivanchev",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "709ec14e-c117-494e-bade-288f9fe19b36",
+                            SecurityStamp = "88c64008-95bb-4d88-84f5-3fa2d52eec85",
                             TwoFactorEnabled = false,
                             UserName = "Daniel"
                         });
@@ -832,7 +635,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DateStartWork = new DateTime(2022, 12, 13, 22, 53, 39, 469, DateTimeKind.Local).AddTicks(1881),
+                            DateStartWork = new DateTime(2022, 12, 14, 19, 1, 5, 221, DateTimeKind.Local).AddTicks(3845),
                             UserId = "4b7f2886-0c38-41b3-8281-b6fc1f465838"
                         });
                 });
@@ -888,45 +691,62 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Drink", b =>
-                {
-                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.DrinkType", "Type")
-                        .WithMany()
-                        .HasForeignKey("DrinkTyepeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", null)
-                        .WithMany("Drinks")
-                        .HasForeignKey("OrderId");
-
-                    b.Navigation("Type");
-                });
-
-            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Foods", b =>
-                {
-                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", null)
-                        .WithMany("Foods")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.FoodType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Type");
-                });
-
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", b =>
                 {
+                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Table", "Table")
+                        .WithMany()
+                        .HasForeignKey("TableId");
+
                     b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Table");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Product", b =>
+                {
+                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.ProductSecondaryType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductSecondaryTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductType");
+                });
+
+            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.ProductSecondaryType", b =>
+                {
+                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.ProductType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductType");
+                });
+
+            modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Sales", b =>
+                {
+                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", "Order")
+                        .WithMany("Sales")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineRestaurantMenu.Infrastructure.Data.Entity.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Table", b =>
@@ -953,9 +773,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineRestaurantMenu.Infrastructure.Data.Entity.Order", b =>
                 {
-                    b.Navigation("Drinks");
-
-                    b.Navigation("Foods");
+                    b.Navigation("Sales");
                 });
 #pragma warning restore 612, 618
         }

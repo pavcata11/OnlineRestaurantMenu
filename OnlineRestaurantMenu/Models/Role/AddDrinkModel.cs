@@ -1,6 +1,7 @@
 ﻿using Humanizer.Localisation;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
 using OnlineRestaurantMenu.Infrastructure.Data.Enums;
+using OnlineRestaurantMenu.Models.Product;
 using System.ComponentModel.DataAnnotations;
 using static OnlineRestaurantMenu.Infrastructure.Data.Constants.DataConstants.Drink;
 namespace OnlineRestaurantMenu.Models.Role
@@ -26,8 +27,8 @@ namespace OnlineRestaurantMenu.Models.Role
         public string Image { get; set; } = null!;
         [Required]
         public int TypeId { get; set; }
-        public IEnumerable<DrinkTypesModel> DrinkTypes { get; set; } = new List<DrinkTypesModel>();
+        public IEnumerable<ProductTypesModel> DrinkTypes { get; set; } = new List<ProductTypesModel>();
         [Required]
-        public Product.AddDrinkModel File { get; set; } = null!;
+        public Product.AddProductModel File { get; set; } = null!;
     }
 }

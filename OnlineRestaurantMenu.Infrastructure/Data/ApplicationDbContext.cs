@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineRestaurantMenu.Infrastructure.Data.Configuration;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
 using System.Data;
+using System.Drawing;
 using System.Reflection.Emit;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -20,19 +21,21 @@ namespace OnlineRestaurantMenu.Infrastructure.Data
 
     protected override void OnModelCreating(ModelBuilder builder)
         {
-            
-            builder.ApplyConfiguration(new CafeConfiguration());
-            builder.ApplyConfiguration(new DrinkTypeConfiguration());
-            builder.ApplyConfiguration(new DrinkConfiguration());
-            builder.ApplyConfiguration(new FoodTypeConfiguration());
-            builder.ApplyConfiguration(new FoodConfiguration());
-            builder.ApplyConfiguration(new SuppElementConfiguration());
+         
+
+            builder.ApplyConfiguration(new ProductTypeConfiguration());
+            builder.ApplyConfiguration(new ProductSecondaryTypeConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
             base.OnModelCreating(builder);
             this.SeedRoles(builder);
             this.SeedUsers(builder);
             this.SeedUserRoles(builder);
             builder.ApplyConfiguration(new WaiterConfiguration());
             builder.ApplyConfiguration(new TableConfiguration());
+            builder.ApplyConfiguration(new OrderConfiguration());
+            builder.ApplyConfiguration(new SaleConfiguration());
+
+
         }
 
         private void SeedUsers(ModelBuilder builder)
@@ -99,13 +102,13 @@ namespace OnlineRestaurantMenu.Infrastructure.Data
                 new IdentityUserRole<string>() { RoleId = "8572e5a7-c0cb-4b91-a456-ecf092ac4e81", UserId = "4b7f2886-0c38-41b3-8281-b6fc1f465838" }
                 );
         }
-        public DbSet<Cafe> Cafe { get; set; }
-        public DbSet<Drink> Drinks { get; set; }
-        public DbSet<DrinkType> DrinkTypes { get; set; }
-        public DbSet<Foods> Foods { get; set; }
-        public DbSet<FoodType> FoodTypes { get; set; }
+      
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductSecondaryType> ProductSecondaryTypes { get; set; }
+        public DbSet<Entity.ProductType> ProductTypes { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Supplements> Supplements { get; set; }
+        public DbSet<Sales> Sales { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Waiter> Waiters { get; set; }

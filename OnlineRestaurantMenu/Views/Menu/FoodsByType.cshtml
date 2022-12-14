@@ -1,6 +1,9 @@
-﻿@model IEnumerable<Food>
+﻿@using OnlineRestaurantMenu.Models.Product;
+@model IEnumerable<ProductModel>
+
+
 @{
-    ViewBag.Title = "Watchlist";
+   
 }
 
 <div class="container pb-5" style="background-color:rgb(220,220,220,0.1)">
@@ -15,11 +18,15 @@ border-end-start-radius:80px;
   position: relative;
         height: 380px;"></div>
 
-       <div class="text-center mb-2">
+    <div class="text-center mb-2">
         <h1 class="text-black">Меню</h1>
-        <button class="btn btn-primary">Храни</button>
-        <button class="btn btn-primary">Напитки</button>
-       </div>
+
+        <div class="d-flex justify-content-center">
+            <a class="nav-link btn btn-primary" style="color:white; margin-right:10px" asp-controller="Menu" asp-action="FoodsTypes">Храни</a>
+            <a class="nav-link btn btn-primary" style="color:white" asp-controller="Menu" asp-action="DrinksTypes">Напитки</a>
+        </div>
+
+    </div>
     <div class="input-group px-5">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
         <button type="button" class="btn btn-primary">search</button>
@@ -27,9 +34,11 @@ border-end-start-radius:80px;
     <div class="row px-5 mt-3">
         @foreach (var food in Model)
         {
+            <form asp-action="AddInOrder" asp-controller="Product" method="post" enctype="multipart/form-data">
             <div class="col-sm-6 col-md-6 col-lg-4">
                 <div class="food-card">
                     <div class="food-card_img">
+                            <input type="hidden" asp-for="@Model.Where(x=>x.Id==food.Id).FirstOrDefault().Id" />
                         <img src="@food.Image" alt="">
                     </div>
                     <div class="food-card_content">
@@ -72,7 +81,7 @@ border-end-start-radius:80px;
                                                 </svg>
                                             </button>
                                         </div>
-                                        <input id="input" value = "0" type="text" class="form-control" placeholder="">
+                                            <input id="input" value="0" type="text" class="form-control">
                                         <div class="input-group-append">
                                             <button onclick="plus(event)" id="plus"  class="btn btn-outline-secondary add-btn" type="button" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -86,12 +95,15 @@ border-end-start-radius:80px;
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="button" class="btn btn-success">Добави в количка</button>
+                               
+                                    <button  type="submit">Subscribe</button>
+                               
                         </div>
                     </div>
                 </div>
                 
             </div>
+            </form>
         }
         
     </div>

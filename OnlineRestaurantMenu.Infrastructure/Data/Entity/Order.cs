@@ -12,10 +12,13 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         public User User { get; set; }
         [Required]
         public string UserId { get; set; }
-        public ICollection<Drink> Drinks { get; set; }
-        public ICollection<Foods> Foods { get; set; }
+        public ICollection<Sales> Sales { get; set; }
         public bool IsPay { get; set; }
         public bool CallToWaiter { get; set; }
-      
+        public int? TableId { get; set; }
+
+        [ForeignKey(nameof(TableId))]
+        public Table? Table { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿@model DrinkModel
+﻿@using OnlineRestaurantMenu.Models.Product;
+@model ProductModel
 @{
     ViewData["Title"] = "Редактиране на напитка";
 }
@@ -73,14 +74,14 @@
             <div class="row px-5">
                 <div class="col-md-12 mb-4">
                     <div class=" mb-1 ">
-                        <label asp-for="@Model.TypeId" class="form-label">Тип напитка</label>
-                        <select asp-for="@Model.TypeId" class="form-control">
-                            @foreach (var type in Model.DrinkTypes)
+                        <label asp-for="@Model.ProductTypeId" class="form-label">Тип напитка</label>
+                        <select asp-for="@Model.ProductTypeId" class="form-control">
+                            @foreach (var type in Model.ProductTypes)
                             {
                                 <option value="@type.Id">@type.Name</option>
                             }
                         </select>
-                        <span asp-validation-for="TypeId" class="text-danger"></span>
+                        <span asp-validation-for="ProductTypeId" class="text-danger"></span>
                     </div>
                 </div>
             </div>

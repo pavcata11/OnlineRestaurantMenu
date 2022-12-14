@@ -1,6 +1,6 @@
-﻿namespace OnlineRestaurantMenu.Models
+﻿namespace OnlineRestaurantMenu.Models.Product
 {
-    public class DrinkTypesModel
+    public class ProductTypesModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

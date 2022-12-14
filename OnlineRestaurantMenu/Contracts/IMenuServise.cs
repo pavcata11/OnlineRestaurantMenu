@@ -1,5 +1,5 @@
-﻿using OnlineRestaurantMenu.Infrastructure.Data.Entity;
-using OnlineRestaurantMenu.Models;
+﻿using OnlineRestaurantMenu.Models.Menu;
+using OnlineRestaurantMenu.Models.Product;
 
 namespace OnlineRestaurantMenu.Contracts
 {
@@ -7,7 +7,7 @@ namespace OnlineRestaurantMenu.Contracts
     {
         public Task<IEnumerable<MenuFoodModel>> GetAllFoodTypesAsync();
         public Task<IEnumerable<MenuFoodModel>> GetAllDrinkTypesAsync();
-        public Task<IEnumerable<Food>> GetAllFoodByType(int id);
+        public Task<IEnumerable<ProductModel>> GetAllFoodByType(int id);
 
     }
 }

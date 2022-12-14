@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
+namespace OnlineRestaurantMenu.Infrastructure.Data.Enums
 {
-    internal class OrderDrinks
+    public enum ProductTypeEnum
     {
+        Напитки,
+        Храни
     }
 }

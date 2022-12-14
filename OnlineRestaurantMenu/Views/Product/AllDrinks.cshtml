@@ -1,5 +1,6 @@
-﻿
-@model IEnumerable<DrinkModel>
+﻿@using OnlineRestaurantMenu.Models.Product;
+
+@model IEnumerable<ProductModel>
 @{
     ViewData["Title"] = "Всички напитки";
     Pager pager = new Pager();
@@ -18,7 +19,6 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Категория</th>
                 <th scope="col">Име</th>
                 <th scope="col">Описание</th>
                 <th scope="col">Цена</th>
@@ -34,7 +34,6 @@
             {
                  <tr>
                     <th scope="row">@rows</th>
-                    <td>@item.TypeId</td>
                     <td>@item.Name</td>
                     <td>@item.Description</td>
                     <td>@item.Price лв.</td>
@@ -44,7 +43,7 @@
                         @Html.ActionLink("Редактиране", "EditDrink", new { Id = item.Id })
                     </td>
                     <td>
-                        @Html.ActionLink("Изтриване", "RemoveDrink", new { Id = item.Id })
+                        @Html.ActionLink("Изтриване", "RemoveProduct", new { Id = item.Id })
                     </td>
                 </tr>
                 rows++;

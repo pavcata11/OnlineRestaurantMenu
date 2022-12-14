@@ -14,6 +14,8 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         public string LastName { get; set; } = null!;
         [Required]
         public int Age { get; set; }
+        public int CurrentOrderId { get; set; }
+      
 
 
     }
