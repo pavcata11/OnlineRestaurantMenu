@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineRestaurantMenu.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using OnlineRestaurantMenu.Infrastructure.Data;
 namespace OnlineRestaurantMenu.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221214174111_addProduct")]
+    partial class addProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -476,9 +478,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.Property<int>("CountOfSalesThisItem")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -498,7 +497,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         {
                             Id = 1,
                             CountOfSalesThisItem = 5,
-                            IsDeleted = false,
                             OrderId = 1,
                             ProductId = 1
                         });
@@ -651,7 +649,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "6d59a5be-e68e-4a02-b25a-fc69d24235e2",
+                            ConcurrencyStamp = "2111af1e-6bf6-4e5c-89a1-29f442158291",
                             CurrentOrderId = 0,
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
@@ -660,7 +658,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4b04787e-c6a2-4cc4-b788-e54217bfc703",
+                            SecurityStamp = "2b24d6c6-d521-4079-ad04-05d6e4eb65dc",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -669,7 +667,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "5176633b-6d3f-405f-8f75-adc61261d6d3",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "0f94509b-feca-454f-b971-9607ef4b1b66",
+                            ConcurrencyStamp = "464e9ce2-e761-4afe-844f-8727877c0abc",
                             CurrentOrderId = 0,
                             Email = "pavel@gmail.com",
                             EmailConfirmed = false,
@@ -677,7 +675,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             LastName = "Ivanchev",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bb586e0f-d2d6-476d-8f38-b539f17cf8e6",
+                            SecurityStamp = "09203e02-a4f7-45f9-9e25-aa77ef74e62e",
                             TwoFactorEnabled = false,
                             UserName = "Pavel"
                         },
@@ -686,7 +684,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "4b7f2886-0c38-41b3-8281-b6fc1f465838",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "6270e428-9f71-44ea-beb2-a4e7783eeb92",
+                            ConcurrencyStamp = "273453f5-390b-4083-8777-b2ff319a8edb",
                             CurrentOrderId = 0,
                             Email = "daniel@gmail.com",
                             EmailConfirmed = false,
@@ -694,7 +692,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             LastName = "Ivanchev",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4e3f9e61-bca4-49c0-906b-e368913e7f73",
+                            SecurityStamp = "d857c935-a9e0-4471-b5e0-b288899b637f",
                             TwoFactorEnabled = false,
                             UserName = "Daniel"
                         });
@@ -725,7 +723,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DateStartWork = new DateTime(2022, 12, 17, 16, 10, 58, 461, DateTimeKind.Local).AddTicks(1451),
+                            DateStartWork = new DateTime(2022, 12, 14, 19, 41, 10, 726, DateTimeKind.Local).AddTicks(2565),
                             UserId = "4b7f2886-0c38-41b3-8281-b6fc1f465838"
                         });
                 });

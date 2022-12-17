@@ -1,6 +1,8 @@
-﻿namespace OnlineRestaurantMenu.Models.Product
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+namespace OnlineRestaurantMenu.Models.Product
 {
-    public class ProductModel
+    public class OrderModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -10,9 +12,9 @@
         public int TimeToGet { get; set; }
         public string Image { get; set; }
         public int Size { get; set; }
-        public int count { get; set; } = 0;
-        public int ProductTypeId { get; set; }
-        public List<ProductTypesModel> ProductTypes { get; set; } = new List<ProductTypesModel>();
+        public int Count { get; set; } = 0;
+        public int TableId { get; set; }
+        public IEnumerable<TableModel> OrderTables { get; set; } = new List<TableModel>();
 
     }
 }

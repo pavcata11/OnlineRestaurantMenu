@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineRestaurantMenu.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using OnlineRestaurantMenu.Infrastructure.Data;
 namespace OnlineRestaurantMenu.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221214171554_addTypes")]
+    partial class addTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,7 +288,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = 1,
                             Calories = 200,
                             Description = "Описание на кока-кола някакъв текст",
-                            Image = "https://cdncloudcart.com/16474/products/images/2280/koka-kola-ken-330ml-image_5f5641fd58685_600x600.jpeg?1599488528",
+                            Image = "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg",
                             Name = "Кока-кола",
                             Price = 4m,
                             ProductSecondaryTypeId = 1,
@@ -296,74 +298,14 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            Calories = 80,
-                            Description = "Описание на фанта портокал някакъв текст",
-                            Image = "https://distribution-eu.com/wp-content/uploads/2021/05/Fanta-Orange.jpg",
-                            Name = "Фанта портокал",
-                            Price = 3m,
-                            ProductSecondaryTypeId = 1,
-                            Size = 250,
-                            TimeToget = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Calories = 254,
-                            Description = "Описание на Cappy Вишна някакъв текст",
-                            Image = "https://bai-ilia.com/image/cache/data/kapi-vishna-0250l-kasa55-0-800x800.jpg",
-                            Name = "Cappy Вишна",
-                            Price = 3m,
-                            ProductSecondaryTypeId = 5,
-                            Size = 250,
-                            TimeToget = 3
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Calories = 254,
-                            Description = "Описание на Cappy портокал някакъв текст",
-                            Image = "https://sofia.parkmart.bg/wp-content/uploads/2022/05/0000023548.jpg",
-                            Name = "Cappy портокал",
-                            Price = 3m,
-                            ProductSecondaryTypeId = 5,
-                            Size = 250,
-                            TimeToget = 3
-                        },
-                        new
-                        {
-                            Id = 6,
                             Calories = 450,
                             Description = "Описание на овчарска салата",
-                            Image = "https://gradcontent.com/lib/400x296/mozarella29.jpg",
+                            Image = "https://www.foodbusinessafrica.com/wp-content/uploads/2021/08/soda.jpg",
                             Name = "Овчарска салата",
                             Price = 9.45m,
                             ProductSecondaryTypeId = 2,
                             Size = 250,
-                            TimeToget = 32
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Calories = 450,
-                            Description = "Описание на Цезар салата",
-                            Image = "https://matekitchen.com/wp-content/uploads/2021/12/salata-tsezar-s-pile-i-krutoni.jpg",
-                            Name = "Салата Цезар",
-                            Price = 9.45m,
-                            ProductSecondaryTypeId = 2,
-                            Size = 250,
-                            TimeToget = 20
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Calories = 450,
-                            Description = "Руска салата",
-                            Image = "https://www.supichka.com/files/images/2757/klasicheska_ruska_salata_1.jpg",
-                            Name = "Салата Цезар",
-                            Price = 9.45m,
-                            ProductSecondaryTypeId = 2,
-                            Size = 250,
-                            TimeToget = 20
+                            TimeToget = 2
                         });
                 });
 
@@ -476,9 +418,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                     b.Property<int>("CountOfSalesThisItem")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -498,7 +437,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         {
                             Id = 1,
                             CountOfSalesThisItem = 5,
-                            IsDeleted = false,
                             OrderId = 1,
                             ProductId = 1
                         });
@@ -651,7 +589,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "6d59a5be-e68e-4a02-b25a-fc69d24235e2",
+                            ConcurrencyStamp = "8cd833bf-8872-4393-9cfc-bd7292b07d4c",
                             CurrentOrderId = 0,
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
@@ -660,7 +598,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4b04787e-c6a2-4cc4-b788-e54217bfc703",
+                            SecurityStamp = "7db7bd48-9fc2-480e-826a-a3ce53fa3659",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -669,7 +607,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "5176633b-6d3f-405f-8f75-adc61261d6d3",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "0f94509b-feca-454f-b971-9607ef4b1b66",
+                            ConcurrencyStamp = "37580260-5d24-4ec7-b3b9-f0b7cda80567",
                             CurrentOrderId = 0,
                             Email = "pavel@gmail.com",
                             EmailConfirmed = false,
@@ -677,7 +615,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             LastName = "Ivanchev",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bb586e0f-d2d6-476d-8f38-b539f17cf8e6",
+                            SecurityStamp = "a8d98cce-6102-4045-9035-bd2f5b0dd2ae",
                             TwoFactorEnabled = false,
                             UserName = "Pavel"
                         },
@@ -686,7 +624,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             Id = "4b7f2886-0c38-41b3-8281-b6fc1f465838",
                             AccessFailedCount = 0,
                             Age = 0,
-                            ConcurrencyStamp = "6270e428-9f71-44ea-beb2-a4e7783eeb92",
+                            ConcurrencyStamp = "4f3aff17-83a3-43d9-9d53-822935950b6d",
                             CurrentOrderId = 0,
                             Email = "daniel@gmail.com",
                             EmailConfirmed = false,
@@ -694,7 +632,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                             LastName = "Ivanchev",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4e3f9e61-bca4-49c0-906b-e368913e7f73",
+                            SecurityStamp = "e4b27bbe-62db-4d13-8545-04a6a5166c7c",
                             TwoFactorEnabled = false,
                             UserName = "Daniel"
                         });
@@ -725,7 +663,7 @@ namespace OnlineRestaurantMenu.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DateStartWork = new DateTime(2022, 12, 17, 16, 10, 58, 461, DateTimeKind.Local).AddTicks(1451),
+                            DateStartWork = new DateTime(2022, 12, 14, 19, 15, 53, 999, DateTimeKind.Local).AddTicks(17),
                             UserId = "4b7f2886-0c38-41b3-8281-b6fc1f465838"
                         });
                 });

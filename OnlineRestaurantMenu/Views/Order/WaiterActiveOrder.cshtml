@@ -1,4 +1,13 @@
-﻿<div>
+﻿@using OnlineRestaurantMenu.Models.Waiter;
+
+
+@model IEnumerable<WaiterActiveOrderModel>
+@{
+    ViewData["Title"] = "";
+}
+
+
+<div>
 
 <table>
 
@@ -8,17 +17,9 @@
 
           <th>#</th>
 
-          <th>Потребител</th>
-
-          <th>Напитки</th>
-
-          <th>Ястия</th>
-
-          <th>Други</th>
+          <th>Продукти</th>
 
           <th>Извикай сервитьор</th>
-
-          <th>Сметка</th>
 
           <th>Статус</th>
 
@@ -27,62 +28,47 @@
       <thead>
 
       <tbody>
+          @foreach (var item in Model)
+          {
 
-        <tr>
+                    
+
+            <tr>
 
            <td>1</td>
 
-          <td>Павел Иванчев</td>
+         
 
           <td>
-
-          <ul class="list-unstyled">
-
-                <li>Кока-кола</li>
-
-                <li>Фанта-портокал</li>
-
-                <li>Фанта-лимон</li>
-
-                <li>Сок праскова</li>
-
-            </ul>
-
+             <ul class="list-unstyled">
+          @foreach (var pr in item.Products)
+           {
+                               
+                <li>@pr.Name</li>
+            }
+          </ul>
           </td>
-
-          <td>
-
-          <ul class="list-unstyled">
-
-                <li>Овчарска салата</li>
-
-                <li>Салата цезар</li>
-
-                <li>Боб</li>
-
-            </ul>
-
-          </td>
-
-           <td>
+              
 
 
 
-           </td>
+      
 
 
 
-          <td>НЕ</td>
+          <td>@item.ComoOnWaiter</td>
 
-          <td>НЕ</td>
 
           <td>
 
             <div style="border: 2px solid green;border-radius: 25px;background-color: green; text-align:center; color:white">
 
-              Отворена
+              @item.OrderStatus
 
             </div>
+            </td>
+            </tr>
+            }
 
       </tbody>
 

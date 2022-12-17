@@ -1,24 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineRestaurantMenu.Contracts;
 using OnlineRestaurantMenu.Models.Product;
 using OnlineRestaurantMenu.Service;
+using System.Security.Claims;
 
 namespace OnlineRestaurantMenu.Controllers
 {
     public class OrderController : Controller
     {
-       /* public IActionResult Index()
+        private readonly IWaiterActiveOrderServise waiterActiveOrderServise;
+        public OrderController(IWaiterActiveOrderServise _waiterActiveOrderServise)
         {
-            return View();
+            waiterActiveOrderServise = _waiterActiveOrderServise;
         }
-        [HttpPost]
-        public async Task<IActionResult> AddInOrder(Food model)
+
+        [HttpGet]
+        public async Task<IActionResult> WaiterActiveOrder()
         {
-            if (model.CounttoBuy == 0)
-            {
-                return View();  
-            }
-          
-            return View();
-        }*/
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            var model = await waiterActiveOrderServise.GetWaiterActiveOrderAsync(userId);
+            return View(model);
+        }
+
     }
 }

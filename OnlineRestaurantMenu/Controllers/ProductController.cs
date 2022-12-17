@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineRestaurantMenu.Contracts;
 using OnlineRestaurantMenu.DropBox;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
@@ -6,6 +7,7 @@ using OnlineRestaurantMenu.Models;
 using OnlineRestaurantMenu.Models.Product;
 using OnlineRestaurantMenu.Models.Role;
 using OnlineRestaurantMenu.Service;
+using System.Security.Claims;
 
 namespace OnlineRestaurantMenu.Controllers
 {
@@ -175,7 +177,58 @@ namespace OnlineRestaurantMenu.Controllers
 
         }
 
+      
+         [HttpPost]
+        public async Task<IActionResult> AddInOrder(OrderModel model)
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            await productService.AddProdyctInOrderAsync(model, userId);
+
+          
+            var model1 = await productService.GetMyItems(userId);
+            return View(model1);
+        }
+        [HttpGet]
+        public async Task<IActionResult> AddInOrder()
+        {
+           
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            var model = await productService.GetMyItems(userId);
+            var tables = await productService.GetTablesAsync();
+            ViewData["Tables"] = tables;
+          
+            return View(model);
+
+            
+        }
+       
+        public async Task<IActionResult> RemoveProductFromOrder(int id)
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            await productService.RemoveProductAsync(id);
+
+            var model1 = await productService.GetMyItems(userId);
+            return View(nameof(AddInOrder));
+        }
+       /* public async Task<IActionResult> SearchProduct(string? searchTerm = null, int pages = 1,int productPerPage=3)
+        {
+            var products= new List<Product>();
+            if (string.IsNullOrEmpty(searchTerm) == false)
+            {
+                searchTerm = $"%{searchTerm.ToLower()}%";
+                products = products
+                    .Where(c => EF.Functions.Like(c.Make, searchTerm)
+                    EF.Functions.Like(c.CarModel, searchTerm)
+                    EF.Functions.Like(c.Description.ToLower(), searchTerm));
+            }
+            return View(nameof(AddInOrder));
+        }*/
         
+
+
+
+
 
 
 

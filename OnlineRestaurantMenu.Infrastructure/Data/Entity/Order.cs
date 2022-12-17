@@ -20,5 +20,6 @@ namespace OnlineRestaurantMenu.Infrastructure.Data.Entity
         [ForeignKey(nameof(TableId))]
         public Table? Table { get; set; }
 
+        
     }
 }

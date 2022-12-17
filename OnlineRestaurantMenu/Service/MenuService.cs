@@ -2,6 +2,7 @@
 using OnlineRestaurantMenu.Contracts;
 using OnlineRestaurantMenu.Infrastructure.Data;
 using OnlineRestaurantMenu.Infrastructure.Data.Entity;
+using OnlineRestaurantMenu.Infrastructure.Data.Enums;
 using OnlineRestaurantMenu.Models.Menu;
 using OnlineRestaurantMenu.Models.Product;
 
@@ -18,9 +19,11 @@ namespace OnlineRestaurantMenu.Service
         public async Task<IEnumerable<MenuFoodModel>> GetAllDrinkTypesAsync()
         {
             return await context.ProductSecondaryTypes
-                .Where(x=>x.Id==1)
+                .Include(x=>x.ProductType)
+                .Where(x=>x.ProductType.Id==1)
              .Select(m => new MenuFoodModel()
              {
+                 Id=m.Id,
                  Type =  m.Name,
                  Image = m.Image
 
@@ -29,7 +32,7 @@ namespace OnlineRestaurantMenu.Service
 
         public async Task<IEnumerable<ProductModel>> GetAllFoodByType(int id)
         {
-            return await context.Products.Where(x => x.ProductSecondaryTypeId == id).Select(x => new ProductModel
+           var result =  await context.Products.Where(x => x.ProductSecondaryTypeId == id).Select(x => new ProductModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -41,14 +44,32 @@ namespace OnlineRestaurantMenu.Service
                 Size = x.Size
 
             }).ToListAsync();
+            return result;  
+        }
+        public async Task<IEnumerable<ProductModel>> GetAllDrinkByType(int id)
+        {
+            var result = await context.Products.Where(x => x.ProductSecondaryTypeId == id).Select(x => new ProductModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+                Calories = x.Calories,
+                Description = x.Description,
+                TimeToGet = x.TimeToget,
+                Image = x.Image,
+                Size = x.Size
+
+            }).ToListAsync();
+            return result;
         }
 
         public async Task<IEnumerable<MenuFoodModel>> GetAllFoodTypesAsync()
         {
             return await context.ProductSecondaryTypes
-                 .Where(x => x.Id == 2)
+                  .Where(x => x.ProductType.Id == 2)
                 .Select(m => new MenuFoodModel()
                 {
+                    Id = m.Id,
                     Type = m.Name,
                     Image = m.Image
 

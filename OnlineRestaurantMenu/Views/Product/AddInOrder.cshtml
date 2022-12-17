@@ -1,14 +1,26 @@
-﻿<section>
+﻿@using OnlineRestaurantMenu.Models.Product;
+
+@model IEnumerable<OrderModel>
+@{
+    ViewData["Title"] = "Моята поръчка";
+    var tables = (List<TableModel>)ViewData["Tables"]!;
+}
+
+<section>
 
     <div class="container h-100">
 
+        
+            
+     
         <div class="row d-flex justify-content-center align-items-center h-100">
 
             <div class="col">
 
                 <p><span class="h2">Моята поръчка </span></p>
 
-
+                @foreach (var item in Model)
+                {
 
                 <div class="card mb-4">
 
@@ -20,7 +32,7 @@
 
                             <div class="col-md-2 text-center">
 
-                                <img src=https://assets.kulinaria.bg/attachments/pictures-images/0000/1700/MAIN-ovcharska-salata.jpg?1431937163
+                                <img src=@item.Image
                                      class="img-fluid" alt="Generic placeholder image">
 
                             </div>
@@ -31,7 +43,7 @@
 
                                     <p class="text-muted" style="margin-bottom: 0px;">Име</p>
 
-                                    <p>Овчарска салата</p>
+                                    <p>@item.Name</p>
 
                                 </div>
 
@@ -43,7 +55,7 @@
 
                                     <p class="text-muted" style="margin-bottom: 0px;">Размер</p>
 
-                                    <p>400гр.</p>
+                                    <p>@item.Size</p>
 
                                 </div>
 
@@ -55,7 +67,7 @@
 
                                     <p class="text-muted" style="margin-bottom: 0px;">Калории</p>
 
-                                    <p>400kcal</p>
+                                    <p>@item.Calories</p>
 
                                 </div>
 
@@ -83,7 +95,7 @@
 
                                         </div>
 
-                                        <input id="input" value="0" style="width:35px" type="text" class="form-control" placeholder="">
+                                        <input id="input" value="@item.Count" style="width:35px" type="text" class="form-control" placeholder="">
 
                                         <div class="input-group-append">
 
@@ -105,23 +117,38 @@
 
                             </div>
 
-                            <div class="col-md-2 d-flex justify-content-center">
+                            <div class="col-md-1 d-flex justify-content-center">
 
                                 <div class="text-center">
 
                                     <p class="text-muted" style="margin-bottom: 0px;">Цена</p>
 
-                                    <p>10.90лв</p>
+                                    <p>@item.Price</p>
 
                                 </div>
 
                             </div>
+
+                             <div class="col-md-1 d-flex justify-content-center">
+
+                                    <div class="text-center">
+                                        <p>
+                                            @Html.ActionLink("Х", "RemoveProductFromOrder", new { Id = item.Id })
+                                        </p>
+                                       
+                                        
+                                        
+
+                                    </div>
+
+                                </div>   
 
                         </div>
 
                     </div>
 
                 </div>
+                }
 
                 <div class="card mb-5">
 
@@ -129,26 +156,9 @@
 
                         <div class="row">
 
-                            <div class="col-sm-10">
+                           
 
-                                <div>
-
-                                    <label class="form-label">Моля изберете маса!</label>
-
-                                    <select class="form-control">
-                                    </select>
-
-                                    <span class="text-danger"></span>
-
-                                </div>
-
-
-
-
-
-                            </div>
-
-                            <div class="col-sm-2">
+                            <div class="col-sm-12 mt-2">
 
                                 <div class="float-end">
 
@@ -156,15 +166,11 @@
 
                                     <p class="mb-0 d-flex align-items-center">
 
-                                        <span class="small text-muted me-2">Обща цена</span> <span class="lead fw-normal">10.99лв</span>
+                                        <span class="small text-muted me-2">Обща цена</span> <span class="lead fw-normal">@Model.Sum(x=>x.Price*x.Count)</span>
 
                                     </p>
 
-                                    <div class="d-flex justify-content-end">
-
-                                        <button type="button" class="btn btn-success btn-lg me-2">Поръчай</button>
-
-                                    </div>
+                                   
 
                                 </div>
 
@@ -198,6 +204,7 @@
             </div>
 
         </div>
+      
        </div>
 
 

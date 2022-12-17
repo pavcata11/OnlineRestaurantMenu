@@ -31,6 +31,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddScoped<IMenuServise, MenuService>();
 builder.Services.AddScoped<IProductServise, ProductService>();
 builder.Services.AddScoped<IUserServise, UserService>();
+builder.Services.AddScoped<IWaiterActiveOrderServise, WaiterActiveService>();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

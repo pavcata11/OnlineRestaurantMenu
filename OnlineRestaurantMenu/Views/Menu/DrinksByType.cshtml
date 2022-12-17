@@ -29,7 +29,7 @@ border-end-start-radius:80px;
     </div>
     <div class="input-group px-5">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" class="btn btn-primary">search</button>
+        <button asp-action="SearchProduct" asp-controller="Product" type="button" class="btn btn-primary">search</button>
     </div>
     <div class="row px-5 mt-3">
         @foreach (var food in Model)
